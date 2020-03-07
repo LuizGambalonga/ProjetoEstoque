@@ -12,9 +12,13 @@ import Model.Cidade;
 import Model.Estado;
 import Model.MyTableModel;
 import Model.Pais;
+import java.text.ParseException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -119,7 +123,7 @@ public class DialogCidade extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lb_pesquisa.setText("Pesquise Uma Cidade");
 
@@ -155,10 +159,10 @@ public class DialogCidade extends javax.swing.JDialog {
                 .addGap(44, 44, 44))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setToolTipText("A");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         TableCidade.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -191,7 +195,7 @@ public class DialogCidade extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/btn-novo.png"))); // NOI18N
         buttonAdd.setText("Novo");
@@ -222,6 +226,12 @@ public class DialogCidade extends javax.swing.JDialog {
         jLabel1.setText("ID:");
 
         jLabel2.setText("Nome");
+
+        texto_nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                texto_nomeActionPerformed(evt);
+            }
+        });
 
         combo_pais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -402,6 +412,17 @@ public class DialogCidade extends javax.swing.JDialog {
         this.carregaEstado();
         this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
+
+    private void texto_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_nomeActionPerformed
+        // TODO add your handling code here:
+        MaskFormatter formatonome = null;
+        try {
+            formatonome = new MaskFormatter("*****************************************************");
+        } catch (ParseException ex) {
+            Logger.getLogger(DialogCidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        formatonome.setValidCharacters(" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    }//GEN-LAST:event_texto_nomeActionPerformed
 
     /**
      * @param args the command line arguments

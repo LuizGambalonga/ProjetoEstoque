@@ -330,6 +330,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_nome">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="texto_nomeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="combo_pais">
               <Properties>
