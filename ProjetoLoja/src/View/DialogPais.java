@@ -4,7 +4,6 @@ package View;
 import Controller.PaisDAO;
 import Model.MyTableModel;
 import Model.Pais;
-import Model.Vendas;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
