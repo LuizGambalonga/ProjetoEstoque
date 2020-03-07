@@ -31,53 +31,76 @@ public class Veiculo implements java.io.Serializable{
     @SwingColumn(description = "placa",colorOfBackgound = "")
     private String placa;
     //
-    @Column(name = "chassis",length = 40,nullable = false)
+    @Column(name = "chassis",length = 25,nullable = false)
     @SwingColumn(description = "chassis",colorOfBackgound = "")
     private Integer chassis;
     //
-    @Column(name = "renavam",length = 40,nullable = false)
+    @Column(name = "renavam",length = 17,nullable = false)
     @SwingColumn(description = "renavam",colorOfBackgound = "")
     private Integer renavam;
     //
-    @Column(name = "FABRICACAO",length = 40,nullable = false)
+    @Column(name = "FABRICACAO",length = 20,nullable = false)
     @SwingColumn(description = "ano de fabricação",colorOfBackgound = "")
     private Integer fabricacao;
     
-    @Column(name = "valor",length = 40,nullable = false)
-    @SwingColumn(description = "valor",colorOfBackgound = "")
-    private Double valor;
+    @Column(name = "Valor_veiculo",length = 10,nullable = false)
+    @SwingColumn(description = "Valor_veiculo",colorOfBackgound = "")
+    private Double valor_veiculo;
     //
+    @Column(name = "Frete",length = 10,nullable = false)
+    @SwingColumn(description = "Frete",colorOfBackgound = "")
+    private Double frete;
+    //
+    
     @Column(name = "COR",length = 2,nullable = false)
     @Enumerated(EnumType.STRING)
     private Cor cor;
-     // buscou a foreign estado
-     @ManyToOne(fetch =FetchType.LAZY )
+    // buscou a foreign produto
+    @ManyToOne(fetch =FetchType.LAZY )
+    @SwingColumn(description = "Produto",colorOfBackgound = "")
+    @JoinColumn(name = "ID_PRODUTO",referencedColumnName = "ID")
+    private Produto produto;
+    // buscou a foreign cidade
+    @ManyToOne(fetch =FetchType.LAZY )
+    @SwingColumn(description = "Cidade",colorOfBackgound = "")
     @JoinColumn(name = "ID_CIDADE",referencedColumnName = "ID")
     private Cidade cidade;
+    // buscou a foreign estado
     @ManyToOne(fetch = FetchType.LAZY)
+    @SwingColumn(description = "Estado",colorOfBackgound = "")
     @JoinColumn(name ="ID_ESTADO",referencedColumnName = "ID")
     private Estado estado;
     // buscou a foreign pais
     @ManyToOne(fetch = FetchType.LAZY)
+    @SwingColumn(description = "Pais",colorOfBackgound = "")
     @JoinColumn(name ="ID_PAIS",referencedColumnName = "ID")
     private Pais pais;
     //FIM
     public Veiculo() {
      this.setId(0);
      this.setPlaca("AAA-0000");
+     this.setChassis(00000000000000000);
+     this.setRenavam(00000000);
+     this.setFabricacao(0000000000);
+     this.setValor_veiculo(0.01);
+     this.setFrete(0.01);
+     this.setCor(cor.AM);
+     this.setProduto(null);
      this.setCidade(null);
      this.setEstado(null);
      this.setPais(null);
     }
 
-    public Veiculo(Integer id,String placa,Integer chassis, Integer renavam,Integer frabricacao,Double valor,Cor cor,Cidade cidade ,Estado estado,Pais pais) {
+    public Veiculo(Integer id,String placa,Integer chassis, Integer renavam,Integer frabricacao,Double valor_veiculo,Double frete,Cor cor,Produto produto,Cidade cidade ,Estado estado,Pais pais) {
       this.setId(id);
       this.setPlaca(placa);
       this.setChassis(chassis);
       this.setRenavam(renavam);
       this.setFabricacao(fabricacao);
-      this.setValor(valor);
+      this.setValor_veiculo(valor_veiculo);
+      this.setFrete(frete);
       this.setCor(cor);
+      this.setProduto(produto);
       this.setCidade(cidade);
       this.setEstado(estado);
       this.setPais(pais);
@@ -103,6 +126,22 @@ public class Veiculo implements java.io.Serializable{
         return chassis;
     }
 
+    public Double getValor_veiculo() {
+        return valor_veiculo;
+    }
+
+    public void setValor_veiculo(Double valor_veiculo) {
+        this.valor_veiculo = valor_veiculo;
+    }
+
+    public Double getFrete() {
+        return frete;
+    }
+
+    public void setFrete(Double frete) {
+        this.frete = frete < 0 ? 0.01 : frete;
+    }
+
     public void setChassis(Integer chassis) {
         this.chassis = chassis;
     }
@@ -123,12 +162,14 @@ public class Veiculo implements java.io.Serializable{
         this.fabricacao = fabricacao <1900 || fabricacao >2020? 1900:fabricacao;
     }
 
-    public Double getValor() {
-        return valor;
+    
+
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor <0 ? 0.01 :valor;
+    public void setProduto(Produto produto) {
+        this.produto = produto ==null ? new Produto(): produto;
     }
 
    

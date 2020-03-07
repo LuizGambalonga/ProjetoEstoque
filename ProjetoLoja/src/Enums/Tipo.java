@@ -2,11 +2,11 @@
 package Enums;
 
 public enum Tipo {
-    VA("Varejo"),
-    AT("Atacado"),
-    VR("Variados"),
-    EX("Exclusivo"),
-    UC("Unico");
+    CA("Carreta"),
+    CV("Cavalo"),
+    FG("Frigorifico"),
+    TR("Trator"),
+    CG("Cargo");
     
     private String descricao;
 
