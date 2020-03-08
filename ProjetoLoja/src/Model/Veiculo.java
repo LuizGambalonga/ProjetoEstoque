@@ -51,15 +51,34 @@ public class Veiculo implements java.io.Serializable{
     @SwingColumn(description = "Frete",colorOfBackgound = "")
     private Double frete;
     //
-    
     @Column(name = "COR",length = 2,nullable = false)
     @Enumerated(EnumType.STRING)
     private Cor cor;
     // buscou a foreign produto
     @ManyToOne(fetch =FetchType.LAZY )
+    @SwingColumn(description = "Modelo",colorOfBackgound = "")
+    @JoinColumn(name = "ID_MODELO",referencedColumnName = "ID")
+    private Modelo modelo;
+    // buscou a foreign produto
+    @ManyToOne(fetch =FetchType.LAZY )
     @SwingColumn(description = "Produto",colorOfBackgound = "")
     @JoinColumn(name = "ID_PRODUTO",referencedColumnName = "ID")
     private Produto produto;
+    // buscou a foreign clente
+    @ManyToOne(fetch =FetchType.LAZY )
+    @SwingColumn(description = "Cliente",colorOfBackgound = "")
+    @JoinColumn(name = "ID_CLIENTE",referencedColumnName = "ID")
+    private Cliente cliente;
+    // buscou a foreign fornecedor
+    @ManyToOne(fetch =FetchType.LAZY )
+    @SwingColumn(description = "Fornecedor",colorOfBackgound = "")
+    @JoinColumn(name = "ID_FORNECEDOR",referencedColumnName = "ID")
+    private Fornecedor fornecedor;
+    // buscou a foreign fabricante
+    @ManyToOne(fetch =FetchType.LAZY )
+    @SwingColumn(description = "Fabricante",colorOfBackgound = "")
+    @JoinColumn(name = "ID_FABRICANTE",referencedColumnName = "ID")
+    private Fabricante fabricante;
     // buscou a foreign cidade
     @ManyToOne(fetch =FetchType.LAZY )
     @SwingColumn(description = "Cidade",colorOfBackgound = "")
@@ -91,7 +110,7 @@ public class Veiculo implements java.io.Serializable{
      this.setPais(null);
     }
 
-    public Veiculo(Integer id,String placa,Integer chassis, Integer renavam,Integer frabricacao,Double valor_veiculo,Double frete,Cor cor,Produto produto,Cidade cidade ,Estado estado,Pais pais) {
+    public Veiculo(Integer id,String placa,Integer chassis, Integer renavam,Integer frabricacao,Double valor_veiculo,Double frete,Cor cor,Modelo modelo,Produto produto,Cliente cliente,Fabricante fabricante,Fornecedor fornecedor,Cidade cidade ,Estado estado,Pais pais) {
       this.setId(id);
       this.setPlaca(placa);
       this.setChassis(chassis);
@@ -101,6 +120,9 @@ public class Veiculo implements java.io.Serializable{
       this.setFrete(frete);
       this.setCor(cor);
       this.setProduto(produto);
+      this.setCliente(cliente);
+      this.setFornecedor(fornecedor);
+      this.setFabricante(fabricante);
       this.setCidade(cidade);
       this.setEstado(estado);
       this.setPais(pais);
@@ -126,12 +148,44 @@ public class Veiculo implements java.io.Serializable{
         return chassis;
     }
 
+    public Modelo getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(Modelo modelo) {
+        this.modelo = modelo == null? new Modelo():modelo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente==null ? new Cliente():cliente;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor ==null ? new Fornecedor() :fornecedor;
+    }
+
+    public Fabricante getFabricante() {
+        return fabricante;
+    }
+
+    public void setFabricante(Fabricante fabricante) {
+        this.fabricante = fabricante == null ? new Fabricante():fabricante;
+    }
+
     public Double getValor_veiculo() {
         return valor_veiculo;
     }
 
     public void setValor_veiculo(Double valor_veiculo) {
-        this.valor_veiculo = valor_veiculo;
+        this.valor_veiculo = valor_veiculo <0 ? 0.01 : valor_veiculo;
     }
 
     public Double getFrete() {
@@ -161,9 +215,7 @@ public class Veiculo implements java.io.Serializable{
     public void setFabricacao(Integer fabricacao) {
         this.fabricacao = fabricacao <1900 || fabricacao >2020? 1900:fabricacao;
     }
-
     
-
     public Produto getProduto() {
         return produto;
     }
@@ -171,9 +223,6 @@ public class Veiculo implements java.io.Serializable{
     public void setProduto(Produto produto) {
         this.produto = produto ==null ? new Produto(): produto;
     }
-
-   
-
     public Estado getEstado() {
         return estado;
     }

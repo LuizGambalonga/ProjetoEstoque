@@ -8,10 +8,12 @@ package View;
 import Controller.CidadeDAO;
 import Controller.EstadoDAO;
 import Controller.FabricanteDAO;
+import Controller.FabricanteProdutoDAO;
 import Controller.PaisDAO;
 import Model.Cidade;
 import Model.Estado;
 import Model.Fabricante;
+import Model.FabricanteProduto;
 import Model.MyTableModel;
 import Model.Pais;
 import java.util.Vector;
@@ -20,18 +22,18 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author PC
+ * @author Luiz Henrique
  */
-public class DialogFabricante extends javax.swing.JDialog {
-       private FabricanteDAO dao = new FabricanteDAO();
+public class DialogFabricanteProduto extends javax.swing.JDialog {
+    private FabricanteProdutoDAO dao = new FabricanteProdutoDAO();
     
     private void carregaTable(){
         TableFabricante.setModel(
-        new MyTableModel (Fabricante.class,
+        new MyTableModel (FabricanteProduto.class,
        dao.getAll(),TableFabricante));
     }
     private void carregaTable(String filtro){ TableFabricante.setModel(
-        new MyTableModel (Fabricante.class,
+        new MyTableModel (FabricanteProduto.class,
         dao.getAll(filtro),TableFabricante));
         
     }
@@ -74,8 +76,8 @@ public class DialogFabricante extends javax.swing.JDialog {
        combo_pais.setSelectedIndex(0);
        texto_nome.requestFocus();
    }
-   private Fabricante populateObject() throws NumberFormatException{
-        return new Fabricante(
+   private FabricanteProduto populateObject() throws NumberFormatException{
+        return new FabricanteProduto(
         texto_id.getText().isEmpty()?1:Integer.parseInt(texto_id.getText()),
         texto_nome.getText(),
         Integer.parseInt(texto_codigo.getText()+""),
@@ -90,25 +92,30 @@ public class DialogFabricante extends javax.swing.JDialog {
         (Pais)combo_pais.getSelectedItem());  
     }
    
-   private void populateComponentes(Fabricante fabricante){
-        texto_id.setText(fabricante.getId()+"");
-        texto_nome.setText(fabricante.getNome());
-        texto_codigo.setText(fabricante.getCodigo()+"");
-        texto_nomecontato.setText(fabricante.getNome_contato());
-        texto_endereco.setText(fabricante.getEndereco());
-        textTelefone.setText(fabricante.getTelefone());
-        texto_cep.setText(fabricante.getCep());
-        texto_razao_social.setText(fabricante.getRazao_social());
-        texto_cnpj.setText(fabricante.getCnpj());
-        combo_cidade.setSelectedItem(fabricante.getCidade()); 
-        combo_estado.setSelectedItem(fabricante.getEstado()); 
-        combo_pais.setSelectedItem(fabricante.getPais()); 
+   private void populateComponentes(FabricanteProduto fabricanteproduto){
+        texto_id.setText(fabricanteproduto.getId()+"");
+        texto_nome.setText(fabricanteproduto.getNome());
+        texto_codigo.setText(fabricanteproduto.getCodigo()+"");
+        texto_nomecontato.setText(fabricanteproduto.getNome_contato());
+        texto_endereco.setText(fabricanteproduto.getEndereco());
+        textTelefone.setText(fabricanteproduto.getTelefone());
+        texto_cep.setText(fabricanteproduto.getCep());
+        texto_razao_social.setText(fabricanteproduto.getRazao_social());
+        texto_cnpj.setText(fabricanteproduto.getCnpj());
+        combo_cidade.setSelectedItem(fabricanteproduto.getCidade()); 
+        combo_estado.setSelectedItem(fabricanteproduto.getEstado()); 
+        combo_pais.setSelectedItem(fabricanteproduto.getPais()); 
     }
-    public DialogFabricante(java.awt.Frame parent, boolean modal) {
+
+    /**
+     * Creates new form DialogFabricanteProduto
+     */
+    public DialogFabricanteProduto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.carregaTable();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,10 +125,6 @@ public class DialogFabricante extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        lb_pesquisa = new javax.swing.JLabel();
-        texto_pesquisa = new javax.swing.JTextField();
-        pesquisar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -154,50 +157,17 @@ public class DialogFabricante extends javax.swing.JDialog {
         texto_codigo = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         textTelefone = new javax.swing.JFormattedTextField();
+        jPanel1 = new javax.swing.JPanel();
+        lb_pesquisa = new javax.swing.JLabel();
+        texto_pesquisa = new javax.swing.JTextField();
+        pesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Fabricante");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lb_pesquisa.setText("Pesquise Um Fabricante");
-
-        pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/arquivo-menu.png"))); // NOI18N
-        pesquisar.setText("Pesquisar");
-        pesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lb_pesquisa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(texto_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pesquisar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_pesquisa)
-                    .addComponent(texto_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisar))
-                .addGap(44, 44, 44))
-        );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setToolTipText("A");
@@ -439,6 +409,42 @@ public class DialogFabricante extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lb_pesquisa.setText("Pesquise Um Fabricante");
+
+        pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/arquivo-menu.png"))); // NOI18N
+        pesquisar.setText("Pesquisar");
+        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lb_pesquisa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(texto_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pesquisar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_pesquisa)
+                    .addComponent(texto_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pesquisar))
+                .addGap(44, 44, 44))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -462,13 +468,7 @@ public class DialogFabricante extends javax.swing.JDialog {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-        // TODO add your handling code here:
-         this.carregaTable(texto_pesquisa.getText());
-    }//GEN-LAST:event_pesquisarActionPerformed
 
     private void TableFabricanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableFabricanteMouseClicked
         // TODO add your handling code here:
@@ -478,7 +478,7 @@ public class DialogFabricante extends javax.swing.JDialog {
                     TableFabricante.getSelectedRow(),
                     0)+"");
             this.populateComponentes(
-                dao.get(Fabricante.class,codigo));
+                dao.get(FabricanteProduto.class,codigo));
         }
     }//GEN-LAST:event_TableFabricanteMouseClicked
 
@@ -497,7 +497,7 @@ public class DialogFabricante extends javax.swing.JDialog {
             return;
         }
         try{
-            dao.remove(dao.get(Fabricante.class, Integer.parseInt(texto_id.getText())));
+            dao.remove(dao.get(FabricanteProduto.class, Integer.parseInt(texto_id.getText())));
             this.iniciaComponentes();
             this.carregaTable();
         }catch (NumberFormatException ex)  {
@@ -526,12 +526,18 @@ public class DialogFabricante extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_texto_codigoActionPerformed
 
+    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
+        // TODO add your handling code here:
+        this.carregaTable(texto_pesquisa.getText());
+    }//GEN-LAST:event_pesquisarActionPerformed
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        this.carregaTable();
         this.carregaPais();
         this.carregaEstado();
         this.carregaCidade();
-        this.carregaTable();
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -551,20 +557,20 @@ public class DialogFabricante extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricanteProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricanteProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricanteProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricanteProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DialogFabricante dialog = new DialogFabricante(new javax.swing.JFrame(), true);
+                DialogFabricanteProduto dialog = new DialogFabricanteProduto(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
