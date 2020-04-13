@@ -17,10 +17,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
-@Entity
-@Table(name = "VEICULO")
-public class Veiculo implements java.io.Serializable{
-
+    @Entity
+    @Table(name = "VEICULO")
+    public class Veiculo implements java.io.Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID",nullable = false)

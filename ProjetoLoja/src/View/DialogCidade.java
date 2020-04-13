@@ -352,22 +352,39 @@ public class DialogCidade extends javax.swing.JDialog {
          this.carregaTable(texto_pesquisa.getText());
     }//GEN-LAST:event_pesquisarActionPerformed
 
-    private void TableCidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCidadeMouseClicked
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        if (evt.getClickCount()==2){
-            int codigo= Integer.parseInt(
-                TableCidade.getValueAt(
-                    TableCidade.getSelectedRow(),
-                    0)+"");
-            this.populateComponentes(
-                dao.get(Cidade.class, codigo));
-        }
-    }//GEN-LAST:event_TableCidadeMouseClicked
+        this.carregaPais();
+        this.carregaEstado();
+        this.carregaTable();
+    }//GEN-LAST:event_formWindowOpened
 
-    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
+    private void texto_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_nomeActionPerformed
         // TODO add your handling code here:
-        this.iniciaComponentes();
-    }//GEN-LAST:event_buttonAddActionPerformed
+        MaskFormatter formatonome = null;
+        try {
+            formatonome = new MaskFormatter("*****************************************************");
+        } catch (ParseException ex) {
+            Logger.getLogger(DialogCidade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        formatonome.setValidCharacters(" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+    }//GEN-LAST:event_texto_nomeActionPerformed
+
+    private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
+        // TODO add your handling code here:
+
+        try{
+            if(texto_id.getText().isEmpty()){
+                dao.add(this.populateObject());
+            }else{
+                dao.update(this.populateObject());
+            }
+            this.carregaTable();
+            this.iniciaComponentes();
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_buttonSalvaActionPerformed
 
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
         // TODO add your handling code here:
@@ -389,40 +406,22 @@ public class DialogCidade extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ButtonExcluirActionPerformed
 
-    private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
-       
-        
-        try{
-            if(texto_id.getText().isEmpty()){
-                dao.add(this.populateObject());
-            }else{
-                dao.update(this.populateObject());
-            }
-            this.carregaTable();
-            this.iniciaComponentes();
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }//GEN-LAST:event_buttonSalvaActionPerformed
+        this.iniciaComponentes();
+    }//GEN-LAST:event_buttonAddActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void TableCidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCidadeMouseClicked
         // TODO add your handling code here:
-        this.carregaPais();
-        this.carregaEstado();
-        this.carregaTable();
-    }//GEN-LAST:event_formWindowOpened
-
-    private void texto_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_nomeActionPerformed
-        // TODO add your handling code here:
-        MaskFormatter formatonome = null;
-        try {
-            formatonome = new MaskFormatter("*****************************************************");
-        } catch (ParseException ex) {
-            Logger.getLogger(DialogCidade.class.getName()).log(Level.SEVERE, null, ex);
+        if (evt.getClickCount()==2){
+            int codigo= Integer.parseInt(
+                TableCidade.getValueAt(
+                    TableCidade.getSelectedRow(),
+                    0)+"");
+            this.populateComponentes(
+                dao.get(Cidade.class, codigo));
         }
-        formatonome.setValidCharacters(" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    }//GEN-LAST:event_texto_nomeActionPerformed
+    }//GEN-LAST:event_TableCidadeMouseClicked
 
     /**
      * @param args the command line arguments

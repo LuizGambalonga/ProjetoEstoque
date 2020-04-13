@@ -5,12 +5,15 @@
  */
 package View;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author PC
  */
 public class Menu extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Menu
      */
@@ -28,7 +31,6 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         cadastros = new javax.swing.JMenu();
         vendedores = new javax.swing.JMenuItem();
@@ -40,32 +42,24 @@ public class Menu extends javax.swing.JFrame {
         estado = new javax.swing.JMenuItem();
         cliente = new javax.swing.JMenuItem();
         cidade = new javax.swing.JMenuItem();
+        menu_veiculo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TranspoSystem");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/BG_home.jpg"))); // NOI18N
-        jLabel4.setText("jLabel4");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1920, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(144, 144, 144))
+            .addGap(0, 2074, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel4)
-                .addGap(0, 96, Short.MAX_VALUE))
+            .addGap(0, 1086, Short.MAX_VALUE)
         );
 
-        cadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/partido-menu.png"))); // NOI18N
         cadastros.setText("Cadastros");
         cadastros.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
@@ -150,6 +144,15 @@ public class Menu extends javax.swing.JFrame {
         });
         cadastros.add(cidade);
 
+        menu_veiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/veiculo.png"))); // NOI18N
+        menu_veiculo.setText("Veiculos");
+        menu_veiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_veiculoActionPerformed(evt);
+            }
+        });
+        cadastros.add(menu_veiculo);
+
         jMenuBar1.add(cadastros);
 
         setJMenuBar(jMenuBar1);
@@ -169,51 +172,56 @@ public class Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void vendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendedoresActionPerformed
+    private void menu_veiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_veiculoActionPerformed
         // TODO add your handling code here:
-        new DialogVendedores(this, true).setVisible(true);
-    }//GEN-LAST:event_vendedoresActionPerformed
+        new DialogVeiculo(this, true).setVisible(true);
+    }//GEN-LAST:event_menu_veiculoActionPerformed
 
-    private void produtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtoActionPerformed
+    private void cidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidadeActionPerformed
         // TODO add your handling code here:
-        
-        new DialogProduto(this, true).setVisible(true);
-    }//GEN-LAST:event_produtoActionPerformed
-
-    private void paisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paisActionPerformed
-        // TODO add your handling code here:
-        new DialogPais(this, true).setVisible(true);
-    }//GEN-LAST:event_paisActionPerformed
-
-    private void modeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeloActionPerformed
-        // TODO add your handling code here:
-        new DialogModelo(this, true).setVisible(true);
-    }//GEN-LAST:event_modeloActionPerformed
-
-    private void fornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fornecedorActionPerformed
-        // TODO add your handling code here:
-        new DialogFornecedor(this, true).setVisible(true);
-    }//GEN-LAST:event_fornecedorActionPerformed
-
-    private void fabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fabricanteActionPerformed
-        // TODO add your handling code here:
-        new DialogFabricante(this, true).setVisible(true);
-    }//GEN-LAST:event_fabricanteActionPerformed
-
-    private void estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoActionPerformed
-        // TODO add your handling code here:
-        new DialogEstado(this, true).setVisible(true);
-    }//GEN-LAST:event_estadoActionPerformed
+        new DialogCidade(this, true).setVisible(true);
+    }//GEN-LAST:event_cidadeActionPerformed
 
     private void clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteActionPerformed
         // TODO add your handling code here:
         new DialogCliente(this, true).setVisible(true);
     }//GEN-LAST:event_clienteActionPerformed
 
-    private void cidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidadeActionPerformed
+    private void estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoActionPerformed
         // TODO add your handling code here:
-        new DialogCidade(this, true).setVisible(true);
-    }//GEN-LAST:event_cidadeActionPerformed
+        new DialogEstado(this, true).setVisible(true);
+    }//GEN-LAST:event_estadoActionPerformed
+
+    private void fabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fabricanteActionPerformed
+        // TODO add your handling code here:
+        new DialogFabricante(this, true).setVisible(true);
+    }//GEN-LAST:event_fabricanteActionPerformed
+
+    private void fornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fornecedorActionPerformed
+        // TODO add your handling code here:
+        new DialogFornecedor(this, true).setVisible(true);
+    }//GEN-LAST:event_fornecedorActionPerformed
+
+    private void modeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeloActionPerformed
+        // TODO add your handling code here:
+        new DialogModelo(this, true).setVisible(true);
+    }//GEN-LAST:event_modeloActionPerformed
+
+    private void paisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paisActionPerformed
+        // TODO add your handling code here:
+        new DialogPais(this, true).setVisible(true);
+    }//GEN-LAST:event_paisActionPerformed
+
+    private void produtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtoActionPerformed
+        // TODO add your handling code here:
+
+        new DialogProduto(this, true).setVisible(true);
+    }//GEN-LAST:event_produtoActionPerformed
+
+    private void vendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendedoresActionPerformed
+        // TODO add your handling code here:
+        new DialogVendedores(this, true).setVisible(true);
+    }//GEN-LAST:event_vendedoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,6 +267,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem fornecedor;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem menu_veiculo;
     private javax.swing.JMenuItem modelo;
     private javax.swing.JMenuItem pais;
     private javax.swing.JMenuItem produto;

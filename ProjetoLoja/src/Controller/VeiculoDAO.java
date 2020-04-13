@@ -11,13 +11,13 @@ import javax.persistence.Query;
 public class VeiculoDAO extends DAO<Veiculo>{
     
     public List<Veiculo> getAll(){
-        String HQL = "select v from Veiculo v order by v.placa";
+        String HQL = "select ve from Veiculo ve order by ve.placa";
         return super.getAll(HQL);
     }
     //com filtro
      public List<Veiculo> getAll(String filtro){
       return this.getAll().stream().filter(
-        v -> v.getPlaca().contains(
+        ve -> ve.getPlaca().contains(
         filtro.toUpperCase())).collect(Collectors.toList());
     }
 }

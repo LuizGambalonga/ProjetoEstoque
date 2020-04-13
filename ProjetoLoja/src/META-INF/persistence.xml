@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="AplicativoLoja" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="TranspoSystem" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Model.Pais</class>
-    <class>Model.Estado</class>
     <class>Model.Cidade</class>
-    <class>Model.Fabricante</class>
-    <class>Model.Fornecedor</class>
-    <class>Model.Lojas</class>
-    <class>Model.Modelo</class>
-    <class>Model.Vendedores</class>
     <class>Model.Cliente</class>
+    <class>Model.Estado</class>
+    <class>Model.Fabricante</class>
+    <class>Model.FabricanteProduto</class>
+    <class>Model.Fornecedor</class>
+    <class>Model.FornecedorProduto</class>
+    <class>Model.Modelo</class>
+    <class>Model.Pais</class>
     <class>Model.Produto</class>
-    <class>Model.Vendas</class>
-    <class>Model.Item</class>
+    <class>Model.Veiculo</class>
+    <class>Model.Vendedores</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Systoque"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

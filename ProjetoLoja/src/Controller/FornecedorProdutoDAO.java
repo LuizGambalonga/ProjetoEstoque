@@ -10,13 +10,13 @@ import javax.persistence.Query;
 public class FornecedorProdutoDAO extends DAO<FornecedorProduto>{
     
     public List<FornecedorProduto> getAll(){
-        String HQL = "select f from FornecedoProduto f order by f.nome";
+        String HQL = "select fo from FornecedoProduto fo order by fo.nome";
         return super.getAll(HQL);
     }
     //com filtro
      public List<FornecedorProduto> getAll(String filtro){
       return this.getAll().stream().filter(
-        f -> f.getNome().contains(
+        fo -> fo.getNome().contains(
         filtro.toUpperCase())).collect(Collectors.toList());
     }
 }
