@@ -232,6 +232,11 @@ public class DialogCidade extends javax.swing.JDialog {
                 texto_nomeActionPerformed(evt);
             }
         });
+        texto_nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_nomeKeyTyped(evt);
+            }
+        });
 
         combo_pais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -372,7 +377,11 @@ public class DialogCidade extends javax.swing.JDialog {
 
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
-
+         if(texto_nome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatório inserir um nome para Cidade");
+            return;
+        }
+     
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
@@ -422,6 +431,14 @@ public class DialogCidade extends javax.swing.JDialog {
                 dao.get(Cidade.class, codigo));
         }
     }//GEN-LAST:event_TableCidadeMouseClicked
+
+    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomeKeyTyped
 
     /**
      * @param args the command line arguments

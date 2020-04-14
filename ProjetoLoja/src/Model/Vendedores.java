@@ -39,7 +39,7 @@ public class Vendedores implements java.io.Serializable{
     @Column(name = "ENDERECO",length = 100,nullable = false)
     private String endereco;
     //
-    @Column(name = "CEP",length = 15,nullable = false)
+    @Column(name = "CEP",length = 9,nullable = false)
     private String cep;
     //
     @ManyToOne(fetch = FetchType.LAZY)
@@ -58,10 +58,10 @@ public class Vendedores implements java.io.Serializable{
     this.setId(0);
     this.setNome("PADRÃO");
     this.setNome_contato("PADRÃO");
-    this.setCpf("000.000.000-00");
-    this.setTelefone("(00)00000-0000");
-    this.setEndereco("PADRÃO");
-    this.setCep("00000-000");
+    //this.setCpf("000.000.000-00");
+    //this.setTelefone("(00)00000-0000");
+    //this.setEndereco("Rua Padrão");
+    //this.setCep("00000-000");
     this.setCidade(null);
     this.setEstado(null);
     this.setPais(null);
@@ -102,7 +102,7 @@ public class Vendedores implements java.io.Serializable{
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf.length()!=14 ? "000.000.000-00":cpf;
+        this.cpf = cpf;
     }
 
     public String getTelefone() {
@@ -143,7 +143,7 @@ public class Vendedores implements java.io.Serializable{
     }
 
     public void setEndereco(String endereco) {
-        this.endereco = endereco.trim().isEmpty()?"PADRÃO": endereco.toUpperCase();
+        this.endereco = endereco;
     }
 
     public String getCep() {
@@ -151,7 +151,7 @@ public class Vendedores implements java.io.Serializable{
     }
 
     public void setCep(String cep) {
-        this.cep = cep.length()!=10?"00000-000":cep;
+        this.cep = cep;
     }
 
     public Cidade getCidade() {

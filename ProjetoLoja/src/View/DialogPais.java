@@ -85,7 +85,6 @@ public class DialogPais extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         texto_sigla = new javax.swing.JTextField();
-        buttonJson = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
 
@@ -97,7 +96,7 @@ public class DialogPais extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lb_pesquisa.setText("Pesquise Uma Sigla");
 
@@ -144,10 +143,10 @@ public class DialogPais extends javax.swing.JDialog {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setToolTipText("A");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         TablePais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -178,7 +177,7 @@ public class DialogPais extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/btn-novo.png"))); // NOI18N
         buttonAdd.setText("Novo");
@@ -210,11 +209,9 @@ public class DialogPais extends javax.swing.JDialog {
 
         jLabel2.setText("Sigla:");
 
-        buttonJson.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/arquivo-menu.png"))); // NOI18N
-        buttonJson.setText("Carregar JSON");
-        buttonJson.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonJsonActionPerformed(evt);
+        texto_sigla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_siglaKeyTyped(evt);
             }
         });
 
@@ -239,9 +236,7 @@ public class DialogPais extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(texto_sigla, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonJson)
-                .addGap(271, 271, 271))
+                .addGap(422, 422, 422))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,9 +251,8 @@ public class DialogPais extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(texto_sigla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonJson))
-                .addContainerGap(90, Short.MAX_VALUE))
+                    .addComponent(texto_sigla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -331,7 +325,7 @@ public class DialogPais extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(49, Short.MAX_VALUE))
+                        .addContainerGap(55, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,6 +340,15 @@ public class DialogPais extends javax.swing.JDialog {
 
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
+        if(texto_sigla.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatório inserir uma sigla para o Pais");
+            return;
+        }
+        if(texto_sigla.getText().length()!=3){
+        JOptionPane.showMessageDialog(null, "É necessario informar no minimo três letras para a sigla de um Pais");
+        texto_sigla.setText("");
+        return;
+    }
          try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
@@ -407,14 +410,13 @@ public class DialogPais extends javax.swing.JDialog {
     this.carregaTable(texto_pesquisa.getText());
     }//GEN-LAST:event_pesquisarActionPerformed
 
-    private void buttonJsonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJsonActionPerformed
+    private void texto_siglaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_siglaKeyTyped
         // TODO add your handling code here:
-        try{
-            this.carregaURL();
-        }catch(IOException ex){
-            System.out.println("Erro: "+ex.getMessage());
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
         }
-    }//GEN-LAST:event_buttonJsonActionPerformed
+    }//GEN-LAST:event_texto_siglaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -462,7 +464,6 @@ public class DialogPais extends javax.swing.JDialog {
     private javax.swing.JButton ButtonExcluir;
     private javax.swing.JTable TablePais;
     private javax.swing.JButton buttonAdd;
-    private javax.swing.JButton buttonJson;
     private javax.swing.JButton buttonSalva;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -12,6 +12,7 @@ import Model.MyTableModel;
 import Model.Pais;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -65,6 +66,7 @@ public class DialogEstado extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.carregaTable();
+        
     }
 
     /**
@@ -76,6 +78,7 @@ public class DialogEstado extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         lb_pesquisa = new javax.swing.JLabel();
         texto_pesquisa = new javax.swing.JTextField();
@@ -95,6 +98,17 @@ public class DialogEstado extends javax.swing.JDialog {
         combo_pais = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro De Estado");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -103,7 +117,7 @@ public class DialogEstado extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lb_pesquisa.setText("Pesquise Um Estado");
 
@@ -139,10 +153,10 @@ public class DialogEstado extends javax.swing.JDialog {
                 .addGap(44, 44, 44))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setToolTipText("A");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         TableEstado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -175,7 +189,7 @@ public class DialogEstado extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/btn-novo.png"))); // NOI18N
         buttonAdd.setText("Novo");
@@ -206,6 +220,20 @@ public class DialogEstado extends javax.swing.JDialog {
         jLabel1.setText("ID:");
 
         jLabel2.setText("Nome");
+
+        texto_nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                texto_nomeActionPerformed(evt);
+            }
+        });
+        texto_nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                texto_nomeKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_nomeKeyTyped(evt);
+            }
+        });
 
         combo_pais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -349,6 +377,10 @@ public class DialogEstado extends javax.swing.JDialog {
 
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
+        if(texto_nome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatório inserir um nome para o Estado");
+            return;
+        }
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
@@ -367,6 +399,23 @@ public class DialogEstado extends javax.swing.JDialog {
         this.carregaPais();
         this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
+
+    private void texto_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_nomeActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_texto_nomeActionPerformed
+
+    private void texto_nomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_texto_nomeKeyPressed
+
+    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomeKeyTyped
 
     /**
      * @param args the command line arguments
@@ -420,6 +469,7 @@ public class DialogEstado extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;

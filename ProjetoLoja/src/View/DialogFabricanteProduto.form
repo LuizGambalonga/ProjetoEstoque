@@ -334,6 +334,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_nome">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_nomeKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="combo_pais">
               <Properties>
@@ -401,6 +404,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_nomecontato">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_nomecontatoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
@@ -434,6 +440,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_razao_social">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_razao_socialKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_codigo">
               <Events>

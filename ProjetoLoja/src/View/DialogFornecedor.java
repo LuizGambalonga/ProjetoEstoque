@@ -160,10 +160,10 @@ public class DialogFornecedor extends javax.swing.JDialog {
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setToolTipText("A");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         TableFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,7 +194,7 @@ public class DialogFornecedor extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/btn-novo.png"))); // NOI18N
         buttonAdd.setText("Novo");
@@ -226,6 +226,12 @@ public class DialogFornecedor extends javax.swing.JDialog {
 
         jLabel2.setText("Nome");
 
+        texto_nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_nomeKeyTyped(evt);
+            }
+        });
+
         combo_pais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Pais");
@@ -240,6 +246,12 @@ public class DialogFornecedor extends javax.swing.JDialog {
 
         jLabel6.setText("Nome de Contato");
 
+        texto_nomecontato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_nomecontatoKeyTyped(evt);
+            }
+        });
+
         jLabel7.setText("Endereço");
 
         jLabel8.setText("Cep");
@@ -249,6 +261,12 @@ public class DialogFornecedor extends javax.swing.JDialog {
         jLabel10.setText("Cnpj");
 
         jLabel11.setText("Razao Social");
+
+        texto_razao_social.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_razao_socialKeyTyped(evt);
+            }
+        });
 
         try {
             textTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
@@ -383,7 +401,7 @@ public class DialogFornecedor extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lb_pesquisa.setText("Pesquise Um Fornecedor");
 
@@ -507,6 +525,30 @@ public class DialogFornecedor extends javax.swing.JDialog {
         this.carregaCidade();
         this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
+
+    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomeKeyTyped
+
+    private void texto_nomecontatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomecontatoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomecontatoKeyTyped
+
+    private void texto_razao_socialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_razao_socialKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_razao_socialKeyTyped
 
     /**
      * @param args the command line arguments
