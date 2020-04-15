@@ -101,8 +101,9 @@ public class DialogCliente extends javax.swing.JDialog {
     public DialogCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.carregaTable();
+      //  this.carregaTable();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -356,7 +357,7 @@ public class DialogCliente extends javax.swing.JDialog {
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(texto_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(475, Short.MAX_VALUE))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,12 +470,13 @@ public class DialogCliente extends javax.swing.JDialog {
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
         // TODO add your handling code here:
         if(texto_id.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Selecione");
+            JOptionPane.showMessageDialog(null, "Para realizar a Exclusão deve selecionar o Cliente");
             return;
         }
         if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
             return;
         }
+        JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
         try{
             dao.remove(dao.get(Cliente.class, Integer.parseInt(texto_id.getText())));
             this.iniciaComponentes();
@@ -489,19 +491,22 @@ public class DialogCliente extends javax.swing.JDialog {
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
         if(texto_nome.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "É obrigatório inserir um nome para o Cliente");
+            
             return;
         }
         if(texto_nomecontato.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "É obrigatório inserir um nome para contato");
+            JOptionPane.showMessageDialog(null,"É obrigatório inserir um nome para contato","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            
             return;
         }
           
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
+         JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");
             }else{
                 dao.update(this.populateObject());
+         JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
             }
             this.carregaTable();
             this.iniciaComponentes();
@@ -515,7 +520,7 @@ public class DialogCliente extends javax.swing.JDialog {
         this.carregaPais();
         this.carregaEstado();
         this.carregaCidade();
-        this.carregaTable();
+      //  this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
 
     private void texto_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_cpfActionPerformed

@@ -344,12 +344,13 @@ public class DialogModelo extends javax.swing.JDialog {
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
         // TODO add your handling code here:
         if(texto_id.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Selecione");
+            JOptionPane.showMessageDialog(null, "Para realizar uma Exclusão deve selecionar um Modelo");
             return;
         }
         if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
             return;
         }
+        JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
         try{
             dao.remove(dao.get(Modelo.class, Integer.parseInt(texto_id.getText())));
             this.iniciaComponentes();
@@ -366,8 +367,10 @@ public class DialogModelo extends javax.swing.JDialog {
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
+             JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");
             }else{
                 dao.update(this.populateObject());
+             JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
             }
             this.carregaTable();
             this.iniciaComponentes();

@@ -38,17 +38,13 @@ import javax.persistence.Table;
     @SwingColumn(description = "renavam",colorOfBackgound = "")
     private Integer renavam;
     //
-    @Column(name = "FABRICACAO",length = 20,nullable = false)
+    @Column(name = "FABRICACAO",length = 4,nullable = false)
     @SwingColumn(description = "ano de fabricação",colorOfBackgound = "")
     private Integer fabricacao;
     
     @Column(name = "Valor_veiculo",length = 10,nullable = false)
-    @SwingColumn(description = "Valor_veiculo",colorOfBackgound = "")
+    @SwingColumn(description = "Valor",colorOfBackgound = "")
     private Double valor_veiculo;
-    //
-    @Column(name = "Frete",length = 10,nullable = false)
-    @SwingColumn(description = "Frete",colorOfBackgound = "")
-    private Double frete;
     //
     @Column(name = "COR",length = 2,nullable = false)
     @Enumerated(EnumType.STRING)
@@ -58,16 +54,6 @@ import javax.persistence.Table;
     @SwingColumn(description = "Modelo",colorOfBackgound = "")
     @JoinColumn(name = "ID_MODELO",referencedColumnName = "ID")
     private Modelo modelo;
-    // buscou a foreign produto
-    @ManyToOne(fetch =FetchType.LAZY )
-    @SwingColumn(description = "Produto",colorOfBackgound = "")
-    @JoinColumn(name = "ID_PRODUTO",referencedColumnName = "ID")
-    private Produto produto;
-    // buscou a foreign clente
-    @ManyToOne(fetch =FetchType.LAZY )
-    @SwingColumn(description = "Cliente",colorOfBackgound = "")
-    @JoinColumn(name = "ID_CLIENTE",referencedColumnName = "ID")
-    private Cliente cliente;
     // buscou a foreign fornecedor
     @ManyToOne(fetch =FetchType.LAZY )
     @SwingColumn(description = "Fornecedor",colorOfBackgound = "")
@@ -99,27 +85,21 @@ import javax.persistence.Table;
      this.setPlaca("AAA-0000");
      this.setChassis(00000000000000000);
      this.setRenavam(00000000);
-     this.setFabricacao(0000000000);
      this.setValor_veiculo(0.01);
-     this.setFrete(0.01);
      this.setCor(cor.AM);
-     this.setProduto(null);
      this.setCidade(null);
      this.setEstado(null);
      this.setPais(null);
     }
 
-    public Veiculo(Integer id,String placa,Integer chassis, Integer renavam,Integer frabricacao,Double valor_veiculo,Double frete,Cor cor,Modelo modelo,Produto produto,Cliente cliente,Fabricante fabricante,Fornecedor fornecedor,Cidade cidade ,Estado estado,Pais pais) {
+    public Veiculo(Integer id,String placa,Integer chassis, Integer renavam,Integer frabricacao,Double valor_veiculo,Cor cor,Modelo modelo,Fabricante fabricante,Fornecedor fornecedor,Cidade cidade ,Estado estado,Pais pais) {
       this.setId(id);
       this.setPlaca(placa);
       this.setChassis(chassis);
       this.setRenavam(renavam);
       this.setFabricacao(fabricacao);
       this.setValor_veiculo(valor_veiculo);
-      this.setFrete(frete);
       this.setCor(cor);
-      this.setProduto(produto);
-      this.setCliente(cliente);
       this.setFornecedor(fornecedor);
       this.setFabricante(fabricante);
       this.setCidade(cidade);
@@ -155,14 +135,6 @@ import javax.persistence.Table;
         this.modelo = modelo == null? new Modelo():modelo;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente==null ? new Cliente():cliente;
-    }
-
     public Fornecedor getFornecedor() {
         return fornecedor;
     }
@@ -187,14 +159,6 @@ import javax.persistence.Table;
         this.valor_veiculo = valor_veiculo <0 ? 0.01 : valor_veiculo;
     }
 
-    public Double getFrete() {
-        return frete;
-    }
-
-    public void setFrete(Double frete) {
-        this.frete = frete < 0 ? 0.01 : frete;
-    }
-
     public void setChassis(Integer chassis) {
         this.chassis = chassis;
     }
@@ -212,16 +176,9 @@ import javax.persistence.Table;
     }
 
     public void setFabricacao(Integer fabricacao) {
-        this.fabricacao = fabricacao <1900 || fabricacao >2020? 1900:fabricacao;
+        this.fabricacao = fabricacao;
     }
     
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto ==null ? new Produto(): produto;
-    }
     public Estado getEstado() {
         return estado;
     }

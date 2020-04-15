@@ -7,10 +7,13 @@ package View;
 
 import Controller.FabricanteDAO;
 import Controller.FornecedorDAO;
+import Controller.FornecedorProdutoDAO;
+import Controller.FabricanteProdutoDAO;
 import Controller.ModeloDAO;
 import Controller.ProdutoDAO;
 import Enums.Unidade;
 import Model.Fabricante;
+import Model.FabricanteProduto;
 import Model.Fornecedor;
 import Model.Modelo;
 import Model.MyTableModel;
@@ -40,7 +43,7 @@ public class DialogProduto extends javax.swing.JDialog {
     private void carregaFabricante(){
         DefaultComboBoxModel cbm = 
         new DefaultComboBoxModel(new Vector(
-        new FabricanteDAO().getAll()
+        new FabricanteProdutoDAO().getAll()
         ));
         combo_fabricante.setModel(cbm);
     }
@@ -54,7 +57,7 @@ public class DialogProduto extends javax.swing.JDialog {
      private void carregaFornecedor(){
         DefaultComboBoxModel cbm = 
         new DefaultComboBoxModel(new Vector(
-        new FornecedorDAO().getAll()
+        new FornecedorProdutoDAO().getAll()
         ));
         combo_fornecedor.setModel(cbm);
     }
@@ -427,12 +430,13 @@ public class DialogProduto extends javax.swing.JDialog {
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
         // TODO add your handling code here:
         if(texto_id.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Selecione");
+            JOptionPane.showMessageDialog(null, "Para realizar uma Exclusão deve selecionar um Produto");
             return;
         }
         if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
             return;
         }
+        JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
         try{
             dao.remove(dao.get(Produto.class, Integer.parseInt(texto_id.getText())));
             this.iniciaComponentes();
@@ -449,9 +453,11 @@ public class DialogProduto extends javax.swing.JDialog {
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
+            JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");    
             }else{
                 dao.update(this.populateObject());
             }
+            JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
             this.carregaTable();
             this.iniciaComponentes();
         }catch (Exception ex){

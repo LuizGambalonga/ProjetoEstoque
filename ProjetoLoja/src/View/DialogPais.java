@@ -29,16 +29,7 @@ public class DialogPais extends javax.swing.JDialog {
         dao.getAll(filtro),TablePais));
         
     }
-    private void carregaURL() throws MalformedURLException, IOException{
-        URL url = new URL("http://localhost/Internet2/HTML/Consulta/retornaJson.php");
-        URLConnection conexao = url.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(conexao.getInputStream())); 
-        Gson gson = new Gson();
-        Pais pais = gson.fromJson(in, Pais.class);
-        dao.add(pais);     
-    
-    }
-    
+  
      private void iniciaComponentes(){
        texto_id.setText("");
        texto_sigla.setText("");
@@ -352,8 +343,10 @@ public class DialogPais extends javax.swing.JDialog {
          try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
+            JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");  
             }else{
                 dao.update(this.populateObject());
+            JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
             }
             this.carregaTable();
             this.iniciaComponentes();
@@ -370,12 +363,13 @@ public class DialogPais extends javax.swing.JDialog {
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
         // TODO add your handling code here:
          if(texto_id.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Selecione");
+            JOptionPane.showMessageDialog(null, "Para realizar uma Exclusão deve selecionar um Pais");
             return;
         }
         if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
             return;
         }
+        JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
        try{ 
         dao.remove(dao.get(Pais.class, Integer.parseInt(texto_id.getText())));
         this.iniciaComponentes();

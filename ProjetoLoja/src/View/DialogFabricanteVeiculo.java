@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  *
  * @author PC
  */
-public class DialogFabricante extends javax.swing.JDialog {
+public class DialogFabricanteVeiculo extends javax.swing.JDialog {
        private FabricanteDAO dao = new FabricanteDAO();
     
     private void carregaTable(){
@@ -104,7 +104,7 @@ public class DialogFabricante extends javax.swing.JDialog {
         combo_estado.setSelectedItem(fabricante.getEstado()); 
         combo_pais.setSelectedItem(fabricante.getPais()); 
     }
-    public DialogFabricante(java.awt.Frame parent, boolean modal) {
+    public DialogFabricanteVeiculo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.carregaTable();
@@ -165,7 +165,7 @@ public class DialogFabricante extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lb_pesquisa.setText("Pesquise Um Fabricante");
+        lb_pesquisa.setText("Pesquise Um Fabricante de Veiculo");
 
         pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/arquivo-menu.png"))); // NOI18N
         pesquisar.setText("Pesquisar");
@@ -508,12 +508,13 @@ public class DialogFabricante extends javax.swing.JDialog {
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
         // TODO add your handling code here:
         if(texto_id.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Selecione");
+            JOptionPane.showMessageDialog(null, "Para realizar uma Exclusão deve selecionar um Fabricante de Veiculo");
             return;
         }
         if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
             return;
         }
+        JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
         try{
             dao.remove(dao.get(Fabricante.class, Integer.parseInt(texto_id.getText())));
             this.iniciaComponentes();
@@ -530,8 +531,10 @@ public class DialogFabricante extends javax.swing.JDialog {
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
+              JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");  
             }else{
                 dao.update(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
             }
             this.carregaTable();
             this.iniciaComponentes();
@@ -593,20 +596,21 @@ public class DialogFabricante extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricanteVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricanteVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricanteVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricanteVeiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DialogFabricante dialog = new DialogFabricante(new javax.swing.JFrame(), true);
+                DialogFabricanteVeiculo dialog = new DialogFabricanteVeiculo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -196,7 +196,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void fabricanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fabricanteActionPerformed
         // TODO add your handling code here:
-        new DialogFabricante(this, true).setVisible(true);
+        new DialogFabricanteVeiculo(this, true).setVisible(true);
     }//GEN-LAST:event_fabricanteActionPerformed
 
     private void fornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fornecedorActionPerformed

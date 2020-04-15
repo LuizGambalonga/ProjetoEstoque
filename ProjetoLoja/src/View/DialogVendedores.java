@@ -497,6 +497,7 @@ public class DialogVendedores extends javax.swing.JDialog {
         if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
             return;
         }
+        JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
         try{
             dao.remove(dao.get(Vendedores.class, Integer.parseInt(texto_id.getText())));
             this.iniciaComponentes();
@@ -513,8 +514,11 @@ public class DialogVendedores extends javax.swing.JDialog {
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
+             JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");   
             }else{
                 dao.update(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
+
             }
             this.carregaTable();
             this.iniciaComponentes();
@@ -528,7 +532,7 @@ public class DialogVendedores extends javax.swing.JDialog {
         this.carregaPais();
         this.carregaEstado();
         this.carregaCidade();
-        this.carregaTable();
+        //this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
 
     private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped

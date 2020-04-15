@@ -65,7 +65,7 @@ public class DialogEstado extends javax.swing.JDialog {
     public DialogEstado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.carregaTable();
+       // this.carregaTable();
         
     }
 
@@ -358,12 +358,14 @@ public class DialogEstado extends javax.swing.JDialog {
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
         // TODO add your handling code here:
         if(texto_id.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Selecione");
+            JOptionPane.showMessageDialog(null, "Para realizar uma Exclusão deve selecionar um Estado");
             return;
         }
         if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
             return;
+           
         }
+          JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
         try{
             dao.remove(dao.get(Estado.class, Integer.parseInt(texto_id.getText())));
             this.iniciaComponentes();
@@ -397,7 +399,7 @@ public class DialogEstado extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         this.carregaPais();
-        this.carregaTable();
+      //  this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
 
     private void texto_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_nomeActionPerformed
