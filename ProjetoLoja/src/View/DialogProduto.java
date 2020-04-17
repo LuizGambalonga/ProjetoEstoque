@@ -15,6 +15,7 @@ import Enums.Unidade;
 import Model.Fabricante;
 import Model.FabricanteProduto;
 import Model.Fornecedor;
+import Model.FornecedorProduto;
 import Model.Modelo;
 import Model.MyTableModel;
 import Model.Produto;
@@ -85,8 +86,8 @@ public class DialogProduto extends javax.swing.JDialog {
         Double.parseDouble(texto_valor.getText()),
         (Unidade)combo_unidade.getSelectedItem(),
         (Modelo)combo_modelo.getSelectedItem(),
-        (Fabricante)combo_fabricante.getSelectedItem(),
-        (Fornecedor)combo_fornecedor.getSelectedItem());    
+        (FabricanteProduto)combo_fabricante.getSelectedItem(),
+        (FornecedorProduto)combo_fornecedor.getSelectedItem());    
     }
    
    private void populateComponentes(Produto produto){
@@ -95,8 +96,8 @@ public class DialogProduto extends javax.swing.JDialog {
         texto_valor.setText(produto.getValor()+"");
         combo_unidade.setSelectedItem(produto.getUnidade());
         combo_modelo.setSelectedItem(produto.getModelo()); 
-        combo_fabricante.setSelectedItem(produto.getFabricante());
-        combo_fornecedor.setSelectedItem(produto.getFornecedor()); 
+        combo_fabricante.setSelectedItem(produto.getFabricanteProduto());
+        combo_fornecedor.setSelectedItem(produto.getFornecedorProduto()); 
        
         
        
@@ -105,6 +106,8 @@ public class DialogProduto extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.carregaTable();
+        this.carregaFabricante();
+        this.carregaFornecedor();
     }
 
     /**

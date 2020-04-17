@@ -66,7 +66,7 @@ public class DialogCliente extends javax.swing.JDialog {
        texto_endereco.setText("");
        texto_cep.setText("");
        texto_cpf.setText("");
-       textTelefone.setText("");
+       texto_telefone.setText("");
        texto_pesquisa.setText("");
        combo_estado.setSelectedIndex(0);
        combo_pais.setSelectedIndex(0);
@@ -78,7 +78,7 @@ public class DialogCliente extends javax.swing.JDialog {
         texto_nome.getText(),
         texto_nomecontato.getText(),
         texto_endereco.getText(),
-        textTelefone.getText(),
+        texto_telefone.getText(),
         texto_cep.getText(),
         texto_cpf.getText(),
         (Cidade)combo_cidade.getSelectedItem(),
@@ -91,7 +91,7 @@ public class DialogCliente extends javax.swing.JDialog {
         texto_nome.setText(cliente.getNome());
         texto_nomecontato.setText(cliente.getNome_contato());
         texto_endereco.setText(cliente.getEndereco());
-        textTelefone.setText(cliente.getTelefone());
+        texto_telefone.setText(cliente.getTelefone());
         texto_cep.setText(cliente.getCep());
         texto_cpf.setText(cliente.getCpf());
         combo_cidade.setSelectedItem(cliente.getCidade()); 
@@ -143,9 +143,9 @@ public class DialogCliente extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        texto_telefone = new javax.swing.JTextField();
+        texto_cpf = new javax.swing.JTextField();
         texto_cep = new javax.swing.JTextField();
-        texto_cpf = new javax.swing.JFormattedTextField();
-        textTelefone = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cliente");
@@ -279,28 +279,6 @@ public class DialogCliente extends javax.swing.JDialog {
 
         jLabel10.setText("Cpf");
 
-        try {
-            texto_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        texto_cpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                texto_cpfActionPerformed(evt);
-            }
-        });
-
-        try {
-            textTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        textTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textTelefoneActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -333,9 +311,9 @@ public class DialogCliente extends javax.swing.JDialog {
                                 .addComponent(combo_cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addGap(30, 30, 30)
-                                .addComponent(texto_cep, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(texto_cep, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57)
                                 .addComponent(buttonAdd)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(buttonSalva)
@@ -351,13 +329,13 @@ public class DialogCliente extends javax.swing.JDialog {
                                 .addComponent(texto_nomecontato, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(texto_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(475, Short.MAX_VALUE))))
+                                .addComponent(texto_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(478, Short.MAX_VALUE))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,8 +365,8 @@ public class DialogCliente extends javax.swing.JDialog {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
-                    .addComponent(texto_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -396,10 +374,10 @@ public class DialogCliente extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(texto_cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonAdd)
                     .addComponent(buttonSalva)
-                    .addComponent(ButtonExcluir))
+                    .addComponent(ButtonExcluir)
+                    .addComponent(texto_cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -523,14 +501,6 @@ public class DialogCliente extends javax.swing.JDialog {
       //  this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
 
-    private void texto_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_cpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_texto_cpfActionPerformed
-
-    private void textTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textTelefoneActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -598,13 +568,13 @@ public class DialogCliente extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_pesquisa;
     private javax.swing.JButton pesquisar;
-    private javax.swing.JFormattedTextField textTelefone;
     private javax.swing.JTextField texto_cep;
-    private javax.swing.JFormattedTextField texto_cpf;
+    private javax.swing.JTextField texto_cpf;
     private javax.swing.JTextField texto_endereco;
     private javax.swing.JTextField texto_id;
     private javax.swing.JTextField texto_nome;
     private javax.swing.JTextField texto_nomecontato;
     private javax.swing.JTextField texto_pesquisa;
+    private javax.swing.JTextField texto_telefone;
     // End of variables declaration//GEN-END:variables
 }

@@ -56,12 +56,6 @@ public class Cliente implements java.io.Serializable{
     //FIM
     public Cliente(){
     this.setId(0);
-    this.setNome("PADRÃO");
-    this.setNome_contato("PADRÃO");
-    this.setEndereco("PADRÃO");
-    this.setCep("00000-000");
-    this.setTelefone("(00)00000-0000");
-    this.setCpf("000.000.000-00");
     this.setCidade(null);
     this.setEstado(null);
     this.setPais(null);
@@ -93,7 +87,7 @@ public class Cliente implements java.io.Serializable{
     }
 
     public void setNome(String nome) {
-        this.nome = nome.trim().isEmpty()?"PADRÃO":nome.toUpperCase();
+        this.nome = nome.toUpperCase();;
     }
 
     public String getNome_contato() {
@@ -101,7 +95,7 @@ public class Cliente implements java.io.Serializable{
     }
 
     public void setNome_contato(String nome_contato) {
-        this.nome_contato = nome_contato.trim().isEmpty()?"PADRÃO": nome_contato.toUpperCase();
+        this.nome_contato = nome_contato.toUpperCase();
     }
 
     public String getEndereco() {
@@ -109,7 +103,7 @@ public class Cliente implements java.io.Serializable{
     }
 
     public void setEndereco(String endereco) {
-        this.endereco = endereco.trim().isEmpty()?"PADRÃO":endereco.toUpperCase();
+        this.endereco = endereco.toUpperCase();
     }
 
     public String getCep() {
@@ -117,7 +111,7 @@ public class Cliente implements java.io.Serializable{
     }
 
     public void setCep(String cep) {
-        this.cep = cep.length()!=10?"00000-000":cep;
+        this.cep = cep;
     }
 
     public String getTelefone() {
@@ -125,7 +119,7 @@ public class Cliente implements java.io.Serializable{
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone.length()!=14?"(00)00000-0000":telefone;
+        this.telefone = telefone;
     }
 
     public String getCpf() {
@@ -133,7 +127,7 @@ public class Cliente implements java.io.Serializable{
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf.length()!=14?"000.000.000-00":cpf;
+        this.cpf = cpf;
     }
 
     public Cidade getCidade() {

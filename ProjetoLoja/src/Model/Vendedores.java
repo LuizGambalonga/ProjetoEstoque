@@ -29,8 +29,8 @@ public class Vendedores implements java.io.Serializable{
     @Column(name = "NOME_CONTATO",length = 50,nullable = false)
     @SwingColumn(description = "NOME DE CONTATO",colorOfBackgound = "")
     private String nome_contato;
-    @Column(name = "CPF",length = 14,nullable = false)
     //
+    @Column(name = "CPF",length = 14,nullable = false)
     private String cpf;
     //
     @Column(name = "TELEFONE",length = 14)
@@ -56,12 +56,6 @@ public class Vendedores implements java.io.Serializable{
     //FIM
     public Vendedores(){
     this.setId(0);
-    this.setNome("PADRÃO");
-    this.setNome_contato("PADRÃO");
-    //this.setCpf("000.000.000-00");
-    //this.setTelefone("(00)00000-0000");
-    //this.setEndereco("Rua Padrão");
-    //this.setCep("00000-000");
     this.setCidade(null);
     this.setEstado(null);
     this.setPais(null);
@@ -94,7 +88,7 @@ public class Vendedores implements java.io.Serializable{
     }
 
     public void setNome(String nome) {
-        this.nome = nome.trim().isEmpty()?"PADRÃO":nome.toUpperCase();
+        this.nome = nome.toUpperCase();
     }
 
     public String getCpf() {
@@ -114,7 +108,7 @@ public class Vendedores implements java.io.Serializable{
     }
 
     public void setNome_contato(String nome_contato) {
-        this.nome_contato = nome_contato.trim().isEmpty()?"PADRÃO":nome_contato.toUpperCase();
+        this.nome_contato = nome_contato.toUpperCase();
     }
 
     public Estado getEstado() {
@@ -143,7 +137,7 @@ public class Vendedores implements java.io.Serializable{
     }
 
     public void setEndereco(String endereco) {
-        this.endereco = endereco;
+        this.endereco = endereco.toUpperCase();
     }
 
     public String getCep() {

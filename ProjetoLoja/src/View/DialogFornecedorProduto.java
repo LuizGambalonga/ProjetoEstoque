@@ -68,7 +68,7 @@ public class DialogFornecedorProduto extends javax.swing.JDialog {
        texto_nomecontato.setText("");
        texto_endereco.setText("");
        texto_cep.setText("");
-       textTelefone.setText("");
+       texto_telefone.setText("");
        texto_razao_social.setText("");
        texto_cnpj.setText("");
        texto_pesquisa.setText("");
@@ -82,7 +82,7 @@ public class DialogFornecedorProduto extends javax.swing.JDialog {
         texto_nome.getText(),
         texto_nomecontato.getText(),
         texto_endereco.getText(),
-        textTelefone.getText(),
+        texto_telefone.getText(),
         texto_cep.getText(),
         texto_razao_social.getText(),
         texto_cnpj.getText(),
@@ -96,7 +96,7 @@ public class DialogFornecedorProduto extends javax.swing.JDialog {
         texto_nome.setText(fornecedorproduto.getNome());
         texto_nomecontato.setText(fornecedorproduto.getNome_contato());
         texto_endereco.setText(fornecedorproduto.getEndereco());
-        textTelefone.setText(fornecedorproduto.getTelefone());
+        texto_telefone.setText(fornecedorproduto.getTelefone());
         texto_cep.setText(fornecedorproduto.getCep());
         texto_razao_social.setText(fornecedorproduto.getRazao_social());
         texto_cnpj.setText(fornecedorproduto.getCnpj());
@@ -148,7 +148,7 @@ public class DialogFornecedorProduto extends javax.swing.JDialog {
         texto_cnpj = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         texto_razao_social = new javax.swing.JTextField();
-        textTelefone = new javax.swing.JFormattedTextField();
+        texto_telefone = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lb_pesquisa = new javax.swing.JLabel();
         texto_pesquisa = new javax.swing.JTextField();
@@ -270,12 +270,6 @@ public class DialogFornecedorProduto extends javax.swing.JDialog {
             }
         });
 
-        try {
-            textTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -285,9 +279,9 @@ public class DialogFornecedorProduto extends javax.swing.JDialog {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(texto_cep, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -372,7 +366,7 @@ public class DialogFornecedorProduto extends javax.swing.JDialog {
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(texto_cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -623,7 +617,6 @@ public class DialogFornecedorProduto extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_pesquisa;
     private javax.swing.JButton pesquisar;
-    private javax.swing.JFormattedTextField textTelefone;
     private javax.swing.JTextField texto_cep;
     private javax.swing.JTextField texto_cnpj;
     private javax.swing.JTextField texto_endereco;
@@ -632,5 +625,6 @@ public class DialogFornecedorProduto extends javax.swing.JDialog {
     private javax.swing.JTextField texto_nomecontato;
     private javax.swing.JTextField texto_pesquisa;
     private javax.swing.JTextField texto_razao_social;
+    private javax.swing.JTextField texto_telefone;
     // End of variables declaration//GEN-END:variables
 }

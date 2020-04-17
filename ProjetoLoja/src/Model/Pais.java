@@ -25,7 +25,6 @@ public class Pais implements java.io.Serializable{
     
     public Pais(){
      this.setId(0);
-     this.setSigla("NUL");
     }
     public Pais(Integer id,String sigla){ 
       this.setId(id);
@@ -37,7 +36,7 @@ public class Pais implements java.io.Serializable{
     }
 
     public void setId(Integer id) {
-        this.id = id < 0 ? 0 :id;
+        this.id = id;
     }
 
     public String getSigla() {
@@ -45,7 +44,7 @@ public class Pais implements java.io.Serializable{
     }
 
     public void setSigla(String sigla) {
-        this.sigla = sigla.trim().isEmpty()?"NUL" :sigla.toUpperCase();
+        this.sigla = sigla.toUpperCase();
     }
 
     @Override

@@ -36,7 +36,6 @@ public class Cidade implements java.io.Serializable{
     
     public Cidade(){
      this.setId(0);
-     this.setNome("PADRÃO");
      this.setEstado(null);
      this.setPais(null);
     }
@@ -60,7 +59,7 @@ public class Cidade implements java.io.Serializable{
     }
 
     public void setNome(String nome) {
-        this.nome = nome.trim().isEmpty()?"PADRÃO":nome.toUpperCase();
+        this.nome = nome.toUpperCase();
     }
 
     public Estado getEstado() {

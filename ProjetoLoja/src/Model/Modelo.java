@@ -37,8 +37,6 @@ public class Modelo implements java.io.Serializable{
     //fim
     public Modelo(){
     this.setId(0);
-    this.setCodigo(0);
-    this.setDescricao("PADRÃO");
     this.setFabricante(null);
     }
     public Modelo(Integer id,Integer codigo,String descricao,Fabricante fabricante){
@@ -53,7 +51,7 @@ public class Modelo implements java.io.Serializable{
     }
 
     public void setId(Integer id) {
-        this.id = id<0?0:id;
+        this.id = id;
     }
 
     public Integer getCodigo() {
@@ -61,7 +59,7 @@ public class Modelo implements java.io.Serializable{
     }
 
     public void setCodigo(Integer codigo) {
-        this.codigo = codigo<0?1:codigo;
+        this.codigo = codigo;
     }
 
     public Fabricante getFabricante() {
@@ -77,7 +75,7 @@ public class Modelo implements java.io.Serializable{
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao.trim().isEmpty()?"PADRÃO":descricao;
+        this.descricao = descricao.toUpperCase();
     }
 
     @Override

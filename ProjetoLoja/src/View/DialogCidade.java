@@ -27,13 +27,16 @@ import javax.swing.text.MaskFormatter;
 public class DialogCidade extends javax.swing.JDialog {
     private CidadeDAO dao = new CidadeDAO();
     private void carregaTable(){
-        TableCidade.setModel(
+        tableCidade.removeAll();
+        tableCidade.setModel(
         new MyTableModel (Cidade.class,
-       dao.getAll(),TableCidade));
+       dao.getAll(),tableCidade));
     }
-    private void carregaTable(String filtro){ TableCidade.setModel(
+    private void carregaTable(String filtro){ 
+        tableCidade.removeAll();
+        tableCidade.setModel(
         new MyTableModel (Cidade.class,
-        dao.getAll(filtro),TableCidade));
+        dao.getAll(filtro),tableCidade));
         
     }
     private void carregaPais(){
@@ -60,6 +63,20 @@ public class DialogCidade extends javax.swing.JDialog {
        combo_pais.setSelectedIndex(0);
        texto_nome.requestFocus();
    }
+   private void iniciaComponentesInvisivel(){
+       texto_id.setEnabled(false);
+       texto_nome.setEnabled(false);
+       combo_estado.setEnabled(false);
+       combo_pais.setEnabled(false);
+       
+   }
+   private void DeixaVisivelEditar(){
+       texto_id.setEnabled(true);
+       texto_nome.setEnabled(true);
+       combo_estado.setEnabled(true);
+       combo_pais.setEnabled(true);
+       
+   }
    private Cidade populateObject() throws NumberFormatException{
         return new Cidade(
         texto_id.getText().isEmpty()?1:Integer.parseInt(texto_id.getText()),
@@ -82,6 +99,7 @@ public class DialogCidade extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.carregaTable();
+        iniciaComponentesInvisivel();
     }
 
     /**
@@ -100,7 +118,7 @@ public class DialogCidade extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TableCidade = new javax.swing.JTable();
+        tableCidade = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         buttonAdd = new javax.swing.JButton();
         ButtonExcluir = new javax.swing.JButton();
@@ -108,11 +126,13 @@ public class DialogCidade extends javax.swing.JDialog {
         texto_id = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        texto_nome = new javax.swing.JTextField();
         combo_pais = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         combo_estado = new javax.swing.JComboBox<>();
+        btn_editar = new javax.swing.JButton();
+        texto_nome = new javax.swing.JTextField();
+        btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Cidade");
@@ -164,7 +184,7 @@ public class DialogCidade extends javax.swing.JDialog {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        TableCidade.setModel(new javax.swing.table.DefaultTableModel(
+        tableCidade.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -175,12 +195,12 @@ public class DialogCidade extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TableCidade.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableCidade.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TableCidadeMouseClicked(evt);
+                tableCidadeMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(TableCidade);
+        jScrollPane1.setViewportView(tableCidade);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -227,17 +247,6 @@ public class DialogCidade extends javax.swing.JDialog {
 
         jLabel2.setText("Nome");
 
-        texto_nome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                texto_nomeActionPerformed(evt);
-            }
-        });
-        texto_nome.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                texto_nomeKeyTyped(evt);
-            }
-        });
-
         combo_pais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Pais");
@@ -245,6 +254,20 @@ public class DialogCidade extends javax.swing.JDialog {
         jLabel4.setText("Estado");
 
         combo_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btn_editar.setText("Editar");
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
+
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -268,17 +291,20 @@ public class DialogCidade extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(texto_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(164, 164, 164))
+                        .addComponent(texto_nome)
+                        .addGap(441, 441, 441))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                         .addComponent(buttonAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonSalva)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ButtonExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_editar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_cancelar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel7Layout.setVerticalGroup(
@@ -296,14 +322,16 @@ public class DialogCidade extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addComponent(combo_pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(texto_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(texto_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonExcluir)
                     .addComponent(buttonAdd)
-                    .addComponent(buttonSalva))
+                    .addComponent(buttonSalva)
+                    .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -338,7 +366,7 @@ public class DialogCidade extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 503, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -364,37 +392,31 @@ public class DialogCidade extends javax.swing.JDialog {
         this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
 
-    private void texto_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_nomeActionPerformed
-        // TODO add your handling code here:
-        MaskFormatter formatonome = null;
-        try {
-            formatonome = new MaskFormatter("*****************************************************");
-        } catch (ParseException ex) {
-            Logger.getLogger(DialogCidade.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        formatonome.setValidCharacters(" abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    }//GEN-LAST:event_texto_nomeActionPerformed
-
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
          if(texto_nome.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "É obrigatório inserir um nome para Cidade");
             return;
         }
-     
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
                 JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");
+                ButtonExcluir.setEnabled(true);
             }else{
                 dao.update(this.populateObject());
                 JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
             }
             this.carregaTable();
             this.iniciaComponentes();
+            iniciaComponentesInvisivel();
+            this.ButtonExcluir.setEnabled(true);
+            this.buttonAdd.setEnabled(true);
         }catch (Exception ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+        //
+       
     }//GEN-LAST:event_buttonSalvaActionPerformed
 
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
@@ -411,6 +433,7 @@ public class DialogCidade extends javax.swing.JDialog {
             dao.remove(dao.get(Cidade.class, Integer.parseInt(texto_id.getText())));
             this.iniciaComponentes();
             this.carregaTable();
+            
         }catch (NumberFormatException ex)  {
 
         }catch(Exception ex){
@@ -421,27 +444,41 @@ public class DialogCidade extends javax.swing.JDialog {
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
         this.iniciaComponentes();
+        DeixaVisivelEditar();
+        ButtonExcluir.setEnabled(false);
     }//GEN-LAST:event_buttonAddActionPerformed
 
-    private void TableCidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCidadeMouseClicked
+    private void tableCidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCidadeMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount()==2){
             int codigo= Integer.parseInt(
-                TableCidade.getValueAt(
-                    TableCidade.getSelectedRow(),
+                tableCidade.getValueAt(
+                    tableCidade.getSelectedRow(),
                     0)+"");
             this.populateComponentes(
                 dao.get(Cidade.class, codigo));
         }
-    }//GEN-LAST:event_TableCidadeMouseClicked
+        this.iniciaComponentesInvisivel();
+        this.ButtonExcluir.setEnabled(true);
+    }//GEN-LAST:event_tableCidadeMouseClicked
 
-    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
         // TODO add your handling code here:
-        String caracteres="0987654321";
-        if(caracteres.contains(evt.getKeyChar()+"")){
-        evt.consume();
-        }
-    }//GEN-LAST:event_texto_nomeKeyTyped
+        this.DeixaVisivelEditar();
+        this.ButtonExcluir.setEnabled(false);
+        this.buttonAdd.setEnabled(false);
+        
+    }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        // TODO add your handling code here:
+        this.ButtonExcluir.setEnabled(true);
+        this.buttonAdd.setEnabled(true);
+        this.ButtonExcluir.setEnabled(true);
+        this.buttonSalva.setEnabled(true);
+        this.btn_editar.setEnabled(true);
+        this.iniciaComponentes();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -490,7 +527,8 @@ public class DialogCidade extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonExcluir;
-    private javax.swing.JTable TableCidade;
+    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_editar;
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonSalva;
     private javax.swing.JComboBox<String> combo_estado;
@@ -506,6 +544,7 @@ public class DialogCidade extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_pesquisa;
     private javax.swing.JButton pesquisar;
+    private javax.swing.JTable tableCidade;
     private javax.swing.JTextField texto_id;
     private javax.swing.JTextField texto_nome;
     private javax.swing.JTextField texto_pesquisa;

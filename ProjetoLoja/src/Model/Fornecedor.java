@@ -60,13 +60,6 @@ public class Fornecedor implements java.io.Serializable{
     //FIM
    public Fornecedor(){
    this.setId(0);
-   this.setNome("PADRÃO");
-   this.setNome_contato("PADRÃO");
-   this.setRazao_social("PADRÃO");
-   this.setCnpj("000.000.000-00");
-   this.setEndereco("PADRÃO");
-   this.setCep("00000-000");
-   this.setTelefone("(00)00000-0000");
    this.setCidade(null);
    this.setEstado(null);
    this.setPais(null);
@@ -98,7 +91,7 @@ public class Fornecedor implements java.io.Serializable{
     }
 
     public void setNome(String nome) {
-        this.nome = nome.trim().isEmpty()?"PADRÃO":nome.toUpperCase();
+        this.nome = nome.toUpperCase();
     }
 
     public String getCnpj() {
@@ -110,11 +103,11 @@ public class Fornecedor implements java.io.Serializable{
     }
 
     public void setNome_contato(String nome_contato) {
-        this.nome_contato = nome_contato.trim().isEmpty()?"PADRÃO":nome_contato.toUpperCase();
+        this.nome_contato = nome_contato.toUpperCase();
     }
 
     public void setCnpj(String cnpj) {
-        this.cnpj = cnpj.length()!=14?"000.000.000-00":cnpj;
+        this.cnpj = cnpj;
     }
 
     public String getRazao_social() {
@@ -122,7 +115,7 @@ public class Fornecedor implements java.io.Serializable{
     }
 
     public void setRazao_social(String razao_social) {
-        this.razao_social = razao_social.trim().isEmpty()?"PADRÃO":razao_social.toUpperCase();
+        this.razao_social = razao_social.toUpperCase();
     }
 
     public String getEndereco() {
@@ -130,7 +123,7 @@ public class Fornecedor implements java.io.Serializable{
     }
 
     public void setEndereco(String endereco) {
-        this.endereco = endereco.trim().isEmpty()?"PADRÃO":endereco.toUpperCase();
+        this.endereco = endereco.toUpperCase();
     }
 
     public String getCep() {
@@ -138,7 +131,7 @@ public class Fornecedor implements java.io.Serializable{
     }
 
     public void setCep(String cep) {
-        this.cep = cep.length()!=10?"00000-000":cep;
+        this.cep = cep;
     }
 
     public String getTelefone() {

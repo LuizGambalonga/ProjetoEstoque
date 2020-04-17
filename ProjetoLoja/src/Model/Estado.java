@@ -33,7 +33,6 @@ public class Estado implements java.io.Serializable{
     //FIM
     public Estado() {
      this.setId(0);
-     this.setNome("PADRÃO");
      this.setPais(null);
     }
 
@@ -56,7 +55,7 @@ public class Estado implements java.io.Serializable{
     }
 
     public void setNome(String nome) {
-        this.nome = nome.trim().isEmpty()?"PADRÃO":nome.toUpperCase();
+        this.nome = nome.toUpperCase();
     }
 
     public Pais getPais() {

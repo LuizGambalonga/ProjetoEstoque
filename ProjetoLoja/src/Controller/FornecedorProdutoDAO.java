@@ -10,7 +10,7 @@ import javax.persistence.Query;
 public class FornecedorProdutoDAO extends DAO<FornecedorProduto>{
     
     public List<FornecedorProduto> getAll(){
-        String HQL = "select fo from FornecedoProduto fo order by fo.nome";
+        String HQL = "select fo from FornecedorProduto fo order by fo.nome";
         return super.getAll(HQL);
     }
     //com filtro

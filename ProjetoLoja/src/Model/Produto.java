@@ -42,31 +42,28 @@ public class Produto implements java.io.Serializable{
   private Modelo modelo;
   //
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "ID_FABRICANTE",referencedColumnName = "ID")
-  private Fabricante fabricante;
+  @JoinColumn(name = "ID_FABRICANTE_PRODUTO",referencedColumnName = "ID")
+  private FabricanteProduto fabricante_produto;
   //
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "ID_FORNECEDOR",referencedColumnName = "ID")
-  private Fornecedor fornecedor;
+  @JoinColumn(name = "ID_FORNECEDOR_PRODUTO",referencedColumnName = "ID")
+  private FornecedorProduto fornecedor_produto;
   //FIM
   
   public Produto(){
   this.setId(0);
-  this.setNome("PADRÃO");
-  this.setValor(0.01);
-  this.setUnidade(unidade.BD);
   this.setModelo(null);
-  this.setFabricante(null);
-  this.setFornecedor(null);
+  this.setFabricanteProduto(null);
+  this.setFornecedorProduto(null);
   }
-   public Produto(Integer id,String nome,Double valor,Unidade unidade ,Modelo modelo,Fabricante fabricante,Fornecedor fornecedor){
+   public Produto(Integer id,String nome,Double valor,Unidade unidade ,Modelo modelo,FabricanteProduto fabricante_produto,FornecedorProduto fornecedor_produto){
   this.setId(id);
   this.setNome(nome);
   this.setValor(valor);
   this.setUnidade(unidade);
   this.setModelo(modelo);
-  this.setFabricante(fabricante);
-  this.setFornecedor(fornecedor);       
+  this.setFabricanteProduto(fabricante_produto);
+  this.setFornecedorProduto(fornecedor_produto);       
   }
 
     public Integer getId() {
@@ -82,7 +79,7 @@ public class Produto implements java.io.Serializable{
     }
 
     public void setNome(String nome) {
-        this.nome = nome.trim().isEmpty()?"PADRÃO":nome.toUpperCase();
+        this.nome = nome.toUpperCase();
     }
 
     public Double getValor() {
@@ -99,7 +96,7 @@ public class Produto implements java.io.Serializable{
     
 
     public void setValor(Double valor) {
-        this.valor = valor<0?0.01:valor;
+        this.valor = valor;
     }
 
     public Modelo getModelo() {
@@ -110,20 +107,20 @@ public class Produto implements java.io.Serializable{
         this.modelo = modelo ==null? new Modelo():modelo;
     }
 
-    public Fabricante getFabricante() {
-        return this.fabricante;
+    public FabricanteProduto getFabricanteProduto() {
+        return this.fabricante_produto;
     }
 
-    public void setFabricante(Fabricante fabricante) {
-        this.fabricante = fabricante ==null? new Fabricante():fabricante;
+    public void setFabricanteProduto(FabricanteProduto fabricante_produto) {
+        this.fabricante_produto = fabricante_produto ==null? new FabricanteProduto():fabricante_produto;
     }
 
-    public Fornecedor getFornecedor() {
-        return this.fornecedor;
+    public FornecedorProduto getFornecedorProduto() {
+        return this.fornecedor_produto;
     }
 
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor ==null ? new Fornecedor():fornecedor;
+    public void setFornecedorProduto(FornecedorProduto fornecedor_produto) {
+        this.fornecedor_produto = fornecedor_produto ==null ? new FornecedorProduto():fornecedor_produto;
     }
 
     @Override

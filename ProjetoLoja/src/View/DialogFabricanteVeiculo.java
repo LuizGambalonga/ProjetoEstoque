@@ -66,7 +66,7 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
        texto_codigo.setText("");
        texto_endereco.setText("");
        texto_cep.setText("");
-       textTelefone.setText("");
+       texto_telefone.setText("");
        texto_razao_social.setText("");
        texto_cnpj.setText("");
        texto_pesquisa.setText("");
@@ -81,7 +81,7 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
         Integer.parseInt(texto_codigo.getText()+""),
         texto_nomecontato.getText(),
         texto_endereco.getText(),
-        textTelefone.getText(),
+        texto_telefone.getText(),
         texto_cep.getText(),
         texto_razao_social.getText(),
         texto_cnpj.getText(),
@@ -96,7 +96,7 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
         texto_codigo.setText(fabricante.getCodigo()+"");
         texto_nomecontato.setText(fabricante.getNome_contato());
         texto_endereco.setText(fabricante.getEndereco());
-        textTelefone.setText(fabricante.getTelefone());
+        texto_telefone.setText(fabricante.getTelefone());
         texto_cep.setText(fabricante.getCep());
         texto_razao_social.setText(fabricante.getRazao_social());
         texto_cnpj.setText(fabricante.getCnpj());
@@ -153,7 +153,7 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
         texto_razao_social = new javax.swing.JTextField();
         texto_codigo = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        textTelefone = new javax.swing.JFormattedTextField();
+        texto_telefone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Fabricante");
@@ -186,7 +186,7 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
                 .addComponent(texto_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pesquisar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,8 +227,8 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 48, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,12 +317,6 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
 
         jLabel12.setText("Código Fabricante");
 
-        try {
-            textTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -333,8 +327,8 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(texto_cep, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -349,7 +343,7 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(texto_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(texto_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -386,7 +380,7 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
                         .addComponent(buttonSalva)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ButtonExcluir)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,7 +418,7 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(texto_cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -435,17 +429,18 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(texto_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -464,9 +459,7 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -475,8 +468,7 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -488,22 +480,58 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
          this.carregaTable(texto_pesquisa.getText());
     }//GEN-LAST:event_pesquisarActionPerformed
 
-    private void TableFabricanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableFabricanteMouseClicked
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        if (evt.getClickCount()==2){
-            int codigo= Integer.parseInt(
-                TableFabricante.getValueAt(
-                    TableFabricante.getSelectedRow(),
-                    0)+"");
-            this.populateComponentes(
-                dao.get(Fabricante.class,codigo));
-        }
-    }//GEN-LAST:event_TableFabricanteMouseClicked
+        this.carregaPais();
+        this.carregaEstado();
+        this.carregaCidade();
+        this.carregaTable();
+    }//GEN-LAST:event_formWindowOpened
 
-    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
+    private void texto_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_codigoActionPerformed
         // TODO add your handling code here:
-        this.iniciaComponentes();
-    }//GEN-LAST:event_buttonAddActionPerformed
+    }//GEN-LAST:event_texto_codigoActionPerformed
+
+    private void texto_razao_socialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_razao_socialKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_texto_razao_socialKeyTyped
+
+    private void texto_nomecontatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomecontatoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomecontatoKeyTyped
+
+    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomeKeyTyped
+
+    private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(texto_id.getText().isEmpty()){
+                dao.add(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");
+            }else{
+                dao.update(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
+            }
+            this.carregaTable();
+            this.iniciaComponentes();
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_buttonSalvaActionPerformed
 
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
         // TODO add your handling code here:
@@ -526,58 +554,22 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ButtonExcluirActionPerformed
 
-    private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
-        try{
-            if(texto_id.getText().isEmpty()){
-                dao.add(this.populateObject());
-              JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");  
-            }else{
-                dao.update(this.populateObject());
-                JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
-            }
-            this.carregaTable();
-            this.iniciaComponentes();
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+        this.iniciaComponentes();
+    }//GEN-LAST:event_buttonAddActionPerformed
+
+    private void TableFabricanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableFabricanteMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount()==2){
+            int codigo= Integer.parseInt(
+                TableFabricante.getValueAt(
+                    TableFabricante.getSelectedRow(),
+                    0)+"");
+            this.populateComponentes(
+                dao.get(Fabricante.class,codigo));
         }
-    }//GEN-LAST:event_buttonSalvaActionPerformed
-
-    private void texto_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_codigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_texto_codigoActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        this.carregaPais();
-        this.carregaEstado();
-        this.carregaCidade();
-        this.carregaTable();
-    }//GEN-LAST:event_formWindowOpened
-
-    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
-        // TODO add your handling code here:
-        String caracteres="0987654321";
-        if(caracteres.contains(evt.getKeyChar()+"")){
-        evt.consume();
-        }
-    }//GEN-LAST:event_texto_nomeKeyTyped
-
-    private void texto_nomecontatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomecontatoKeyTyped
-        // TODO add your handling code here:
-        String caracteres="0987654321";
-        if(caracteres.contains(evt.getKeyChar()+"")){
-        evt.consume();
-        }
-    }//GEN-LAST:event_texto_nomecontatoKeyTyped
-
-    private void texto_razao_socialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_razao_socialKeyTyped
-        // TODO add your handling code here:
-        String caracteres="0987654321";
-        if(caracteres.contains(evt.getKeyChar()+"")){
-        evt.consume();
-        }
-    }//GEN-LAST:event_texto_razao_socialKeyTyped
+    }//GEN-LAST:event_TableFabricanteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -649,7 +641,6 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_pesquisa;
     private javax.swing.JButton pesquisar;
-    private javax.swing.JFormattedTextField textTelefone;
     private javax.swing.JTextField texto_cep;
     private javax.swing.JTextField texto_cnpj;
     private javax.swing.JTextField texto_codigo;
@@ -659,5 +650,6 @@ public class DialogFabricanteVeiculo extends javax.swing.JDialog {
     private javax.swing.JTextField texto_nomecontato;
     private javax.swing.JTextField texto_pesquisa;
     private javax.swing.JTextField texto_razao_social;
+    private javax.swing.JTextField texto_telefone;
     // End of variables declaration//GEN-END:variables
 }
