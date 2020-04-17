@@ -7,15 +7,11 @@ package View;
 
 import Controller.FabricanteDAO;
 import Controller.FornecedorDAO;
-import Controller.FornecedorProdutoDAO;
-import Controller.FabricanteProdutoDAO;
 import Controller.ModeloDAO;
 import Controller.ProdutoDAO;
 import Enums.Unidade;
 import Model.Fabricante;
-import Model.FabricanteProduto;
 import Model.Fornecedor;
-import Model.FornecedorProduto;
 import Model.Modelo;
 import Model.MyTableModel;
 import Model.Produto;
@@ -44,7 +40,7 @@ public class DialogProduto extends javax.swing.JDialog {
     private void carregaFabricante(){
         DefaultComboBoxModel cbm = 
         new DefaultComboBoxModel(new Vector(
-        new FabricanteProdutoDAO().getAll()
+        new FabricanteDAO().getAll()
         ));
         combo_fabricante.setModel(cbm);
     }
@@ -58,7 +54,7 @@ public class DialogProduto extends javax.swing.JDialog {
      private void carregaFornecedor(){
         DefaultComboBoxModel cbm = 
         new DefaultComboBoxModel(new Vector(
-        new FornecedorProdutoDAO().getAll()
+        new FornecedorDAO().getAll()
         ));
         combo_fornecedor.setModel(cbm);
     }
@@ -86,8 +82,8 @@ public class DialogProduto extends javax.swing.JDialog {
         Double.parseDouble(texto_valor.getText()),
         (Unidade)combo_unidade.getSelectedItem(),
         (Modelo)combo_modelo.getSelectedItem(),
-        (FabricanteProduto)combo_fabricante.getSelectedItem(),
-        (FornecedorProduto)combo_fornecedor.getSelectedItem());    
+        (Fabricante)combo_fabricante.getSelectedItem(),
+        (Fornecedor)combo_fornecedor.getSelectedItem());    
     }
    
    private void populateComponentes(Produto produto){
@@ -96,8 +92,8 @@ public class DialogProduto extends javax.swing.JDialog {
         texto_valor.setText(produto.getValor()+"");
         combo_unidade.setSelectedItem(produto.getUnidade());
         combo_modelo.setSelectedItem(produto.getModelo()); 
-        combo_fabricante.setSelectedItem(produto.getFabricanteProduto());
-        combo_fornecedor.setSelectedItem(produto.getFornecedorProduto()); 
+        combo_fabricante.setSelectedItem(produto.getFabricante());
+        combo_fornecedor.setSelectedItem(produto.getFornecedor()); 
        
         
        
@@ -459,8 +455,9 @@ public class DialogProduto extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");    
             }else{
                 dao.update(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
             }
-            JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
+            
             this.carregaTable();
             this.iniciaComponentes();
         }catch (Exception ex){

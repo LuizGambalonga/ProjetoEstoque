@@ -8,12 +8,10 @@ package View;
 import Controller.CidadeDAO;
 import Controller.EstadoDAO;
 import Controller.FabricanteDAO;
-import Controller.FabricanteProdutoDAO;
 import Controller.PaisDAO;
 import Model.Cidade;
 import Model.Estado;
 import Model.Fabricante;
-import Model.FabricanteProduto;
 import Model.MyTableModel;
 import Model.Pais;
 import java.util.Vector;
@@ -22,18 +20,18 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Luiz Henrique
+ * @author PC
  */
-public class DialogFabricanteProduto extends javax.swing.JDialog {
-    private FabricanteProdutoDAO dao = new FabricanteProdutoDAO();
+public class DialogFabricante extends javax.swing.JDialog {
+       private FabricanteDAO dao = new FabricanteDAO();
     
     private void carregaTable(){
         TableFabricante.setModel(
-        new MyTableModel (FabricanteProduto.class,
+        new MyTableModel (Fabricante.class,
        dao.getAll(),TableFabricante));
     }
     private void carregaTable(String filtro){ TableFabricante.setModel(
-        new MyTableModel (FabricanteProduto.class,
+        new MyTableModel (Fabricante.class,
         dao.getAll(filtro),TableFabricante));
         
     }
@@ -76,8 +74,8 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
        combo_pais.setSelectedIndex(0);
        texto_nome.requestFocus();
    }
-   private FabricanteProduto populateObject() throws NumberFormatException{
-        return new FabricanteProduto(
+   private Fabricante populateObject() throws NumberFormatException{
+        return new Fabricante(
         texto_id.getText().isEmpty()?1:Integer.parseInt(texto_id.getText()),
         texto_nome.getText(),
         Integer.parseInt(texto_codigo.getText()+""),
@@ -92,30 +90,25 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
         (Pais)combo_pais.getSelectedItem());  
     }
    
-   private void populateComponentes(FabricanteProduto fabricanteproduto){
-        texto_id.setText(fabricanteproduto.getId()+"");
-        texto_nome.setText(fabricanteproduto.getNome());
-        texto_codigo.setText(fabricanteproduto.getCodigo()+"");
-        texto_nomecontato.setText(fabricanteproduto.getNome_contato());
-        texto_endereco.setText(fabricanteproduto.getEndereco());
-        texto_telefone.setText(fabricanteproduto.getTelefone());
-        texto_cep.setText(fabricanteproduto.getCep());
-        texto_razao_social.setText(fabricanteproduto.getRazao_social());
-        texto_cnpj.setText(fabricanteproduto.getCnpj());
-        combo_cidade.setSelectedItem(fabricanteproduto.getCidade()); 
-        combo_estado.setSelectedItem(fabricanteproduto.getEstado()); 
-        combo_pais.setSelectedItem(fabricanteproduto.getPais()); 
+   private void populateComponentes(Fabricante fabricante){
+        texto_id.setText(fabricante.getId()+"");
+        texto_nome.setText(fabricante.getNome());
+        texto_codigo.setText(fabricante.getCodigo()+"");
+        texto_nomecontato.setText(fabricante.getNome_contato());
+        texto_endereco.setText(fabricante.getEndereco());
+        texto_telefone.setText(fabricante.getTelefone());
+        texto_cep.setText(fabricante.getCep());
+        texto_razao_social.setText(fabricante.getRazao_social());
+        texto_cnpj.setText(fabricante.getCnpj());
+        combo_cidade.setSelectedItem(fabricante.getCidade()); 
+        combo_estado.setSelectedItem(fabricante.getEstado()); 
+        combo_pais.setSelectedItem(fabricante.getPais()); 
     }
-
-    /**
-     * Creates new form DialogFabricanteProduto
-     */
-    public DialogFabricanteProduto(java.awt.Frame parent, boolean modal) {
+    public DialogFabricante(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.carregaTable();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,7 +118,14 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        lb_pesquisa = new javax.swing.JLabel();
+        texto_pesquisa = new javax.swing.JTextField();
+        pesquisar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableFabricante = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         buttonAdd = new javax.swing.JButton();
         ButtonExcluir = new javax.swing.JButton();
@@ -154,23 +154,86 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
         texto_codigo = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         texto_telefone = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TableFabricante = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        lb_pesquisa = new javax.swing.JLabel();
-        texto_pesquisa = new javax.swing.JTextField();
-        pesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Fabricante De Produto");
+        setTitle("Cadastro de Fabricante");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lb_pesquisa.setText("Pesquise Um Fabricante ");
+
+        pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/arquivo-menu.png"))); // NOI18N
+        pesquisar.setText("Pesquisar");
+        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lb_pesquisa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(texto_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pesquisar)
+                .addContainerGap(157, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_pesquisa)
+                    .addComponent(texto_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pesquisar))
+                .addGap(44, 44, 44))
+        );
+
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setToolTipText("A");
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        TableFabricante.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TableFabricante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableFabricanteMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TableFabricante);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+        );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -259,8 +322,36 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(texto_cep, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(texto_nomecontato, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(texto_cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(texto_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(texto_razao_social, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(texto_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -288,36 +379,8 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonSalva)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButtonExcluir))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(texto_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(texto_cep, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(texto_nomecontato, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(texto_cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(texto_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(texto_razao_social, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(texto_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(ButtonExcluir)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,94 +429,38 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(texto_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
-
-        TableFabricante.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        TableFabricante.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TableFabricanteMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(TableFabricante);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                .addGap(12, 12, 12)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lb_pesquisa.setText("Pesquise Um Fabricante");
-
-        pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/arquivo-menu.png"))); // NOI18N
-        pesquisar.setText("Pesquisar");
-        pesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lb_pesquisa)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(texto_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pesquisar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb_pesquisa)
-                    .addComponent(texto_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisar))
-                .addGap(126, 126, 126))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -461,34 +468,75 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TableFabricanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableFabricanteMouseClicked
+    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
         // TODO add your handling code here:
-        if (evt.getClickCount()==2){
-            int codigo= Integer.parseInt(
-                TableFabricante.getValueAt(
-                    TableFabricante.getSelectedRow(),
-                    0)+"");
-            this.populateComponentes(
-                dao.get(FabricanteProduto.class,codigo));
-        }
-    }//GEN-LAST:event_TableFabricanteMouseClicked
+         this.carregaTable(texto_pesquisa.getText());
+    }//GEN-LAST:event_pesquisarActionPerformed
 
-    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        this.iniciaComponentes();
-    }//GEN-LAST:event_buttonAddActionPerformed
+        this.carregaPais();
+        this.carregaEstado();
+        this.carregaCidade();
+        this.carregaTable();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void texto_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_codigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_texto_codigoActionPerformed
+
+    private void texto_razao_socialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_razao_socialKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_texto_razao_socialKeyTyped
+
+    private void texto_nomecontatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomecontatoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomecontatoKeyTyped
+
+    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomeKeyTyped
+
+    private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(texto_id.getText().isEmpty()){
+                dao.add(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");
+            }else{
+                dao.update(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
+            }
+            this.carregaTable();
+            this.iniciaComponentes();
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_buttonSalvaActionPerformed
 
     private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
         // TODO add your handling code here:
         if(texto_id.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Para realizar uma Exclusão deve selecionar um Fabricante de Produto");
+            JOptionPane.showMessageDialog(null, "Para realizar uma Exclusão deve selecionar um Fabricante de Veiculo");
             return;
         }
         if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
@@ -496,7 +544,7 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
         }
         JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
         try{
-            dao.remove(dao.get(FabricanteProduto.class, Integer.parseInt(texto_id.getText())));
+            dao.remove(dao.get(Fabricante.class, Integer.parseInt(texto_id.getText())));
             this.iniciaComponentes();
             this.carregaTable();
         }catch (NumberFormatException ex)  {
@@ -506,64 +554,22 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ButtonExcluirActionPerformed
 
-    private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
-        try{
-            if(texto_id.getText().isEmpty()){
-                dao.add(this.populateObject());
-             JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");   
-            }else{
-                dao.update(this.populateObject());
-             JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso"); 
-            }
-            this.carregaTable();
-            this.iniciaComponentes();
-        }catch (Exception ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+        this.iniciaComponentes();
+    }//GEN-LAST:event_buttonAddActionPerformed
+
+    private void TableFabricanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableFabricanteMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount()==2){
+            int codigo= Integer.parseInt(
+                TableFabricante.getValueAt(
+                    TableFabricante.getSelectedRow(),
+                    0)+"");
+            this.populateComponentes(
+                dao.get(Fabricante.class,codigo));
         }
-    }//GEN-LAST:event_buttonSalvaActionPerformed
-
-    private void texto_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_codigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_texto_codigoActionPerformed
-
-    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-        // TODO add your handling code here:
-        this.carregaTable(texto_pesquisa.getText());
-    }//GEN-LAST:event_pesquisarActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        this.carregaTable();
-        this.carregaPais();
-        this.carregaEstado();
-        this.carregaCidade();
-        
-    }//GEN-LAST:event_formWindowOpened
-
-    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
-        // TODO add your handling code here:
-        String caracteres="0987654321";
-        if(caracteres.contains(evt.getKeyChar()+"")){
-        evt.consume();
-        }
-    }//GEN-LAST:event_texto_nomeKeyTyped
-
-    private void texto_nomecontatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomecontatoKeyTyped
-        // TODO add your handling code here:
-        String caracteres="0987654321";
-        if(caracteres.contains(evt.getKeyChar()+"")){
-        evt.consume();
-        }
-    }//GEN-LAST:event_texto_nomecontatoKeyTyped
-
-    private void texto_razao_socialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_razao_socialKeyTyped
-        // TODO add your handling code here:
-        String caracteres="0987654321";
-        if(caracteres.contains(evt.getKeyChar()+"")){
-        evt.consume();
-        }
-    }//GEN-LAST:event_texto_razao_socialKeyTyped
+    }//GEN-LAST:event_TableFabricanteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -582,20 +588,23 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricanteProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricanteProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricanteProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DialogFabricanteProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogFabricante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DialogFabricanteProduto dialog = new DialogFabricanteProduto(new javax.swing.JFrame(), true);
+                DialogFabricante dialog = new DialogFabricante(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -629,6 +638,7 @@ public class DialogFabricanteProduto extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lb_pesquisa;
