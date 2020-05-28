@@ -34,7 +34,8 @@ import javax.swing.JOptionPane;
  */
 public class DialogVeiculo extends javax.swing.JDialog {
       private VeiculoDAO dao = new VeiculoDAO();
-    private void carregaTableVeiculo(){
+    
+      private void carregaTableVeiculo(){
         TableCadastro.setModel(
         new MyTableModel (Veiculo.class,
        dao.getAll(),TableCadastro));

@@ -16,62 +16,68 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@Entity
+@Table(name = "CARGA")
+public class Carga implements java.io.Serializable{
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name = "ID",nullable = false)
+@SwingColumn(description = "CÓDIGO",colorOfBackgound = "")
+private Integer id;
+ //
+@Column(name = "Frete",length = 10,nullable = false)
+@SwingColumn(description = "Frete",colorOfBackgound = "")
+private Double frete;
 
-    @Entity
-    @Table(name = "CARGA")
-    public class Carga implements java.io.Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID",nullable = false)
-    @SwingColumn(description = "CÓDIGO",colorOfBackgound = "")
-    private Integer id;
-    //
-    @Column(name = "placa",length = 7,nullable = false)
-    @SwingColumn(description = "placa",colorOfBackgound = "")
-    private String placa;
-    //
-    @Column(name = "Frete",length = 10,nullable = false)
-    @SwingColumn(description = "Frete",colorOfBackgound = "")
-    private Double frete;
-    // buscou a foreign produto
-    @ManyToOne(fetch =FetchType.LAZY )
-    @SwingColumn(description = "Produto",colorOfBackgound = "")
-    @JoinColumn(name = "ID_PRODUTO",referencedColumnName = "ID")
-    private Produto produto;
-    // buscou a foreign clente
-    @ManyToOne(fetch =FetchType.LAZY )
-    @SwingColumn(description = "Cliente",colorOfBackgound = "")
-    @JoinColumn(name = "ID_CLIENTE",referencedColumnName = "ID")
-    private Cliente cliente;
-    // buscou a foreign fornecedor
-    @ManyToOne(fetch =FetchType.LAZY )
-    @SwingColumn(description = "Fornecedor",colorOfBackgound = "")
-    @JoinColumn(name = "ID_FORNECEDOR_PRODUTO",referencedColumnName = "ID")
-    private FornecedorProduto fornecedorproduto;
-    // buscou a foreign fabricante
-    @ManyToOne(fetch =FetchType.LAZY )
-    @SwingColumn(description = "Fabricante",colorOfBackgound = "")
-    @JoinColumn(name = "ID_FABRICANTE_PRODUTO",referencedColumnName = "ID")
-    private FabricanteProduto fabricanteproduto;
-    // buscou a foreign cidade
-    @ManyToOne(fetch =FetchType.LAZY )
-    @SwingColumn(description = "Cidade",colorOfBackgound = "")
-    @JoinColumn(name = "ID_CIDADE",referencedColumnName = "ID")
-    private Cidade cidade;
-    // buscou a foreign estado
-    @ManyToOne(fetch = FetchType.LAZY)
-    @SwingColumn(description = "Estado",colorOfBackgound = "")
-    @JoinColumn(name ="ID_ESTADO",referencedColumnName = "ID")
-    private Estado estado;
-    // buscou a foreign pais
-    @ManyToOne(fetch = FetchType.LAZY)
-    @SwingColumn(description = "Pais",colorOfBackgound = "")
-    @JoinColumn(name ="ID_PAIS",referencedColumnName = "ID")
-    private Pais pais;
-    //FIM
+@Column(name = "QuantidadeProduto",length = 10,nullable = false)
+@SwingColumn(description = "QuantidadeProduto",colorOfBackgound = "")
+private int quantidadeproduto;
+// buscou a foreign produto
+@ManyToOne(fetch =FetchType.LAZY )
+@SwingColumn(description = "Produto",colorOfBackgound = "")
+@JoinColumn(name = "ID_PRODUTO",referencedColumnName = "ID")
+private Produto produto;
+@Column(name = "UNIDADE",length = 2,nullable = false)
+  @Enumerated(EnumType.STRING)
+  private Unidade unidade;
+ //
+// buscou a foreign clente
+@ManyToOne(fetch =FetchType.LAZY )
+@SwingColumn(description = "Cliente",colorOfBackgound = "")
+@JoinColumn(name = "ID_CLIENTE",referencedColumnName = "ID")
+private Cliente cliente;
+ // buscou a foreign fornecedor
+@ManyToOne(fetch =FetchType.LAZY )
+@SwingColumn(description = "Fornecedor",colorOfBackgound = "")
+@JoinColumn(name = "ID_FORNECEDOR",referencedColumnName = "ID")
+private Fornecedor fornecedor;
+// buscou a foreign fabricante
+@ManyToOne(fetch =FetchType.LAZY )
+@SwingColumn(description = "Fabricante",colorOfBackgound = "")
+@JoinColumn(name = "ID_FABRICANTE",referencedColumnName = "ID")
+private Fabricante fabricante;
+// buscou a foreign cidade
+@ManyToOne(fetch =FetchType.LAZY )
+@SwingColumn(description = "Cidade",colorOfBackgound = "")
+@JoinColumn(name = "ID_CIDADE",referencedColumnName = "ID")
+private Cidade cidade;
+// buscou a foreign estado
+@ManyToOne(fetch = FetchType.LAZY)
+@SwingColumn(description = "Estado",colorOfBackgound = "")
+@JoinColumn(name ="ID_ESTADO",referencedColumnName = "ID")
+private Estado estado;
+// buscou a foreign pais
+@ManyToOne(fetch = FetchType.LAZY)
+@SwingColumn(description = "Pais",colorOfBackgound = "")
+@JoinColumn(name ="ID_PAIS",referencedColumnName = "ID")
+private Pais pais;
+
+@Column(name = "Veiculo",length = 10,nullable = false)
+@SwingColumn(description = "Veiculo",colorOfBackgound = "")
+private String veiculo;
+//FIM
     public Carga() {
      this.setId(0);
-     this.setPlaca("AAA-0000");
      this.setFrete(0.01);
      this.setProduto(null);
      this.setCidade(null);
@@ -79,17 +85,19 @@ import javax.persistence.Table;
      this.setPais(null);
     }
 
-    public Carga(Integer id,String placa,Double frete,Produto produto,Cliente cliente,FabricanteProduto fabricanteproduto,FornecedorProduto fornecedorproduto,Cidade cidade ,Estado estado,Pais pais) {
+    public Carga(Integer id,Double frete,Integer quantidadeproduto,Produto produto,Unidade unidade,Cliente cliente,Fabricante fabricante,Fornecedor fornecedor,Cidade cidade ,Estado estado,Pais pais,String veiculo) {
       this.setId(id);
-      this.setPlaca(placa);
       this.setFrete(frete);
+      this.setQuantidadeproduto(quantidadeproduto);
       this.setProduto(produto);
+      this.setUnidade(unidade.UN);
       this.setCliente(cliente);
-      this.setFornecedorProduto(fornecedorproduto);
-      this.setFabricanteProduto(fabricanteproduto);
+      this.setFornecedor(fornecedor);
+      this.setFabricante(fabricante);
       this.setCidade(cidade);
       this.setEstado(estado);
       this.setPais(pais);
+      this.setVeiculo(veiculo);
     }
 
     public Integer getId() {
@@ -99,37 +107,44 @@ import javax.persistence.Table;
     public void setId(Integer id) {
         this.id = id < 0 ? 0:id;
     }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa.length()!=7 ? "AAA-0000":placa;
-    }
-    
+   
     public Cliente getCliente() {
         return cliente;
+    }
+
+    public int getQuantidadeproduto() {
+        return quantidadeproduto;
+    }
+
+    public void setQuantidadeproduto(int quantidadeproduto) {
+        this.quantidadeproduto = quantidadeproduto;
+    }
+    public Unidade getUnidade() {
+        return this.unidade;
+    }
+
+    public void setUnidade(Unidade unidade) {
+        this.unidade = unidade == null? Unidade.UN:unidade;
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente==null ? new Cliente():cliente;
     }
 
-    public FornecedorProduto getFornecedorProduto() {
-        return fornecedorproduto;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
-    public void setFornecedorProduto(FornecedorProduto fornecedorproduto) {
-        this.fornecedorproduto = fornecedorproduto ==null ? new FornecedorProduto() :fornecedorproduto;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor ==null ? new Fornecedor() :fornecedor;
     }
 
-    public FabricanteProduto getFabricanteProduto() {
-        return fabricanteproduto;
+    public Fabricante getFabricante() {
+        return fabricante;
     }
 
-    public void setFabricanteProduto(FabricanteProduto fabricanteproduto) {
-        this.fabricanteproduto = fabricanteproduto == null ? new FabricanteProduto():fabricanteproduto;
+    public void setFabricante(Fabricante fabricante) {
+        this.fabricante = fabricante == null ? new Fabricante():fabricante;
     }
 
     public Double getFrete() {
@@ -171,12 +186,21 @@ import javax.persistence.Table;
         this.cidade = cidade == null ? new Cidade():cidade;
     }
 
-    
-    @Override
-    public String toString() {
-        return getPlaca();
+    public String getVeiculo() {
+        return veiculo;
     }
 
+    public void setVeiculo(String veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    
+@Override
+    public String toString() {
+        return getVeiculo();
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;

@@ -3,6 +3,7 @@ package Model;
 
 import Enums.Unidade;
 import java.util.Objects;
+import java.util.stream.Stream;
 import javax.annotation.processing.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,6 +34,10 @@ public class Produto implements java.io.Serializable{
   @SwingColumn(description = "VALOR",colorOfBackgound = "")
   private Double valor;
   //
+   @Column(name = "QUANTIDADE",length = 10,nullable = false)
+   @SwingColumn(description = "QUANTIDADE",colorOfBackgound = "")
+    private Integer quantidade;
+  //
   @Column(name = "UNIDADE",length = 2,nullable = false)
   @Enumerated(EnumType.STRING)
   private Unidade unidade;
@@ -56,10 +61,11 @@ public class Produto implements java.io.Serializable{
   this.setFabricante(null);
   this.setFornecedor(null);
   }
-   public Produto(Integer id,String nome,Double valor,Unidade unidade ,Modelo modelo,Fabricante fabricante,Fornecedor fornecedor){
+   public Produto(Integer id,String nome,Double valor,Integer Quantidade,Unidade unidade ,Modelo modelo,Fabricante fabricante,Fornecedor fornecedor){
   this.setId(id);
   this.setNome(nome);
   this.setValor(valor);
+  this.setQuantidade(quantidade);
   this.setUnidade(unidade);
   this.setModelo(modelo);
   this.setFabricante(fabricante);
@@ -92,6 +98,14 @@ public class Produto implements java.io.Serializable{
 
     public void setUnidade(Unidade unidade) {
         this.unidade = unidade == null? Unidade.UN:unidade;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
     
 
@@ -152,5 +166,6 @@ public class Produto implements java.io.Serializable{
         }
         return true;
     }
+
    
 }

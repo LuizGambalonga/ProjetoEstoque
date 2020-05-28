@@ -4,6 +4,7 @@ package Model;
 import Enums.Cor;
 import Enums.Unidade;
 import java.util.Objects;
+import java.util.stream.Stream;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -234,6 +235,10 @@ import javax.persistence.Table;
         }
         
         return true;
+    }
+
+    public Stream<Carga> contains(String toUpperCase) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     
