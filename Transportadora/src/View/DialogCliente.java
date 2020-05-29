@@ -78,8 +78,8 @@ public class DialogCliente extends javax.swing.JDialog {
         texto_nome.getText(),
         texto_nomecontato.getText(),
         texto_endereco.getText(),
-        texto_telefone.getText(),
         texto_cep.getText(),
+        texto_telefone.getText(),
         texto_cpf.getText(),
         (Cidade)combo_cidade.getSelectedItem(),
         (Estado)combo_estado.getSelectedItem(),
@@ -91,8 +91,8 @@ public class DialogCliente extends javax.swing.JDialog {
         texto_nome.setText(cliente.getNome());
         texto_nomecontato.setText(cliente.getNome_contato());
         texto_endereco.setText(cliente.getEndereco());
-        texto_telefone.setText(cliente.getTelefone());
         texto_cep.setText(cliente.getCep());
+        texto_telefone.setText(cliente.getTelefone());
         texto_cpf.setText(cliente.getCpf());
         combo_cidade.setSelectedItem(cliente.getCidade()); 
         combo_estado.setSelectedItem(cliente.getEstado()); 
@@ -469,12 +469,27 @@ public class DialogCliente extends javax.swing.JDialog {
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
         if(texto_nome.getText().isEmpty()){
-            
+            JOptionPane.showMessageDialog(null,"É obrigatório inserir um nome","Mensagem", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if(texto_nomecontato.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"É obrigatório inserir um nome para contato","Mensagem", JOptionPane.INFORMATION_MESSAGE);
-            
+            return;
+        }
+        if(texto_cpf.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório informar o CPF!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_cpf.getText().length()<11 || texto_cpf.getText().length() >11){
+        JOptionPane.showMessageDialog(null,"Informe um CPF valido!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_endereco.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório informar o Endereço!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_cep.getText().length()<7 || texto_cep.getText().length() >7){
+        JOptionPane.showMessageDialog(null,"Insira um Cep Valido","Mensagem", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
           
@@ -498,7 +513,7 @@ public class DialogCliente extends javax.swing.JDialog {
         this.carregaPais();
         this.carregaEstado();
         this.carregaCidade();
-      //  this.carregaTable();
+        this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
 
     /**

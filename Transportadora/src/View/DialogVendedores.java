@@ -63,10 +63,10 @@ public class DialogVendedores extends javax.swing.JDialog {
        texto_id.setText("");
        texto_nome.setText("");
        texto_contato.setText("");
-       texto_endereco.setText("");
-       texto_cep.setText("");
        texto_cpf.setText("");
        texto_telefone.setText("");
+       texto_endereco.setText("");
+       texto_cep.setText("");
        texto_pesquisa.setText("");
        combo_estado.setSelectedIndex(0);
        combo_pais.setSelectedIndex(0);
@@ -77,10 +77,10 @@ public class DialogVendedores extends javax.swing.JDialog {
         texto_id.getText().isEmpty()?1:Integer.parseInt(texto_id.getText()),
         texto_nome.getText(),
         texto_contato.getText(),
-        texto_endereco.getText(),
-        texto_telefone.getText(),
-        texto_cep.getText(),
         texto_cpf.getText(),
+        texto_telefone.getText(),
+        texto_endereco.getText(),
+        texto_cep.getText(),
         (Cidade)combo_cidade.getSelectedItem(),
         (Estado)combo_estado.getSelectedItem(),
         (Pais)combo_pais.getSelectedItem());  
@@ -90,10 +90,10 @@ public class DialogVendedores extends javax.swing.JDialog {
         texto_id.setText(vendedores.getId()+"");
         texto_nome.setText(vendedores.getNome());
         texto_contato.setText(vendedores.getNome_contato());
-        texto_endereco.setText(vendedores.getEndereco());
-        texto_telefone.setText(vendedores.getTelefone());
-        texto_cep.setText(vendedores.getCep());
         texto_cpf.setText(vendedores.getCpf());
+        texto_telefone.setText(vendedores.getTelefone());
+        texto_endereco.setText(vendedores.getEndereco());
+        texto_cep.setText(vendedores.getCep());
         combo_cidade.setSelectedItem(vendedores.getCidade()); 
         combo_estado.setSelectedItem(vendedores.getEstado()); 
         combo_pais.setSelectedItem(vendedores.getPais()); 

@@ -5,8 +5,11 @@
  */
 package View;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+
+
+
 
 /**
  *
@@ -14,14 +17,25 @@ import javax.swing.JLabel;
  */
 public class Menu extends javax.swing.JFrame {
     
+    //ImageIcon menu = new ImageIcon(getClass().getResource("BG_home.png"));
+   // JLabel label = new JLabel(menu);
+    
     
     /**
      * Creates new form Menu
      */
+    
     public Menu() {
+        //add(menu);
+        // setSize(1500,751);
+         //setDefaultCloseOperation(EXIT_ON_CLOSE);
+        // setLocationRelativeTo(this);
+       //  setVisible(true);
         initComponents();
-        
+         
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,56 +46,29 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         cadastros = new javax.swing.JMenu();
-        vendedores = new javax.swing.JMenuItem();
-        produto = new javax.swing.JMenuItem();
         pais = new javax.swing.JMenuItem();
-        modelo = new javax.swing.JMenuItem();
+        estado = new javax.swing.JMenuItem();
+        cidade = new javax.swing.JMenuItem();
+        cliente = new javax.swing.JMenuItem();
         fornecedor = new javax.swing.JMenuItem();
         fabricante = new javax.swing.JMenuItem();
-        estado = new javax.swing.JMenuItem();
-        cliente = new javax.swing.JMenuItem();
-        cidade = new javax.swing.JMenuItem();
+        vendedores = new javax.swing.JMenuItem();
+        produto = new javax.swing.JMenuItem();
+        modelo = new javax.swing.JMenuItem();
         menu_veiculo = new javax.swing.JMenuItem();
+        Carga = new javax.swing.JMenuItem();
+        Menu_pedido_compra = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TranspoSystem");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2074, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1086, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/BG_home.png"))); // NOI18N
 
         cadastros.setText("Cadastros");
         cadastros.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        vendedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/vendedor.png"))); // NOI18N
-        vendedores.setText("Vendedores");
-        vendedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vendedoresActionPerformed(evt);
-            }
-        });
-        cadastros.add(vendedores);
-
-        produto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/produto.png"))); // NOI18N
-        produto.setText("Produto");
-        produto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                produtoActionPerformed(evt);
-            }
-        });
-        cadastros.add(produto);
 
         pais.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/pais.png"))); // NOI18N
         pais.setText("Pais");
@@ -92,14 +79,32 @@ public class Menu extends javax.swing.JFrame {
         });
         cadastros.add(pais);
 
-        modelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/modelo.png"))); // NOI18N
-        modelo.setText("Modelo");
-        modelo.addActionListener(new java.awt.event.ActionListener() {
+        estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/estado.png"))); // NOI18N
+        estado.setText("Estado");
+        estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modeloActionPerformed(evt);
+                estadoActionPerformed(evt);
             }
         });
-        cadastros.add(modelo);
+        cadastros.add(estado);
+
+        cidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/cidade.png"))); // NOI18N
+        cidade.setText("Cidade");
+        cidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cidadeActionPerformed(evt);
+            }
+        });
+        cadastros.add(cidade);
+
+        cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/cliente.png"))); // NOI18N
+        cliente.setText("Cliente");
+        cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clienteActionPerformed(evt);
+            }
+        });
+        cadastros.add(cliente);
 
         fornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/fornecedor.png"))); // NOI18N
         fornecedor.setText("Fornecedor");
@@ -119,34 +124,34 @@ public class Menu extends javax.swing.JFrame {
         });
         cadastros.add(fabricante);
 
-        estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/estado.png"))); // NOI18N
-        estado.setText("Estado");
-        estado.addActionListener(new java.awt.event.ActionListener() {
+        vendedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/vendedor.png"))); // NOI18N
+        vendedores.setText("Vendedores");
+        vendedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                estadoActionPerformed(evt);
+                vendedoresActionPerformed(evt);
             }
         });
-        cadastros.add(estado);
+        cadastros.add(vendedores);
 
-        cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/cliente.png"))); // NOI18N
-        cliente.setText("Cliente");
-        cliente.addActionListener(new java.awt.event.ActionListener() {
+        produto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/produto.png"))); // NOI18N
+        produto.setText("Produto e Estoque");
+        produto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clienteActionPerformed(evt);
+                produtoActionPerformed(evt);
             }
         });
-        cadastros.add(cliente);
+        cadastros.add(produto);
 
-        cidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/cidade.png"))); // NOI18N
-        cidade.setText("Cidade");
-        cidade.addActionListener(new java.awt.event.ActionListener() {
+        modelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/modelo.png"))); // NOI18N
+        modelo.setText("Modelo");
+        modelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cidadeActionPerformed(evt);
+                modeloActionPerformed(evt);
             }
         });
-        cadastros.add(cidade);
+        cadastros.add(modelo);
 
-        menu_veiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/veiculo.png"))); // NOI18N
+        menu_veiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/veiculo.png"))); // NOI18N
         menu_veiculo.setText("Veiculos");
         menu_veiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +159,19 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         cadastros.add(menu_veiculo);
+
+        Carga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/carga.jpg"))); // NOI18N
+        Carga.setText("Carga");
+        cadastros.add(Carga);
+
+        Menu_pedido_compra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/Pedido_Compra.png"))); // NOI18N
+        Menu_pedido_compra.setText("Pedido de Compras");
+        Menu_pedido_compra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Menu_pedido_compraActionPerformed(evt);
+            }
+        });
+        cadastros.add(Menu_pedido_compra);
 
         jMenuBar1.add(cadastros);
 
@@ -163,11 +181,15 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 574, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 335, Short.MAX_VALUE))
         );
 
         pack();
@@ -225,34 +247,15 @@ public class Menu extends javax.swing.JFrame {
         new DialogVendedores(this, true).setVisible(true);
     }//GEN-LAST:event_vendedoresActionPerformed
 
+    private void Menu_pedido_compraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_pedido_compraActionPerformed
+        // TODO add your handling code here:
+        new DialogPedidoCompra(this, true).setVisible(true);
+    }//GEN-LAST:event_Menu_pedido_compraActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu().setVisible(true);
@@ -261,18 +264,22 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Carga;
+    private javax.swing.JMenuItem Menu_pedido_compra;
     private javax.swing.JMenu cadastros;
     private javax.swing.JMenuItem cidade;
     private javax.swing.JMenuItem cliente;
     private javax.swing.JMenuItem estado;
     private javax.swing.JMenuItem fabricante;
     private javax.swing.JMenuItem fornecedor;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem menu_veiculo;
     private javax.swing.JMenuItem modelo;
     private javax.swing.JMenuItem pais;
     private javax.swing.JMenuItem produto;
     private javax.swing.JMenuItem vendedores;
     // End of variables declaration//GEN-END:variables
+
+    
 }
