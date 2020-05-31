@@ -28,6 +28,7 @@ public class Estado implements java.io.Serializable{
     private String nome;
     //
     @ManyToOne(fetch = FetchType.LAZY)
+    @SwingColumn(description = "PAIS",colorOfBackgound = "")
     @JoinColumn(name ="ID_PAIS",referencedColumnName = "ID")
     private Pais pais;
     //FIM

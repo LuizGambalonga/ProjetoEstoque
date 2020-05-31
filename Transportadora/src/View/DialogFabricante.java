@@ -518,6 +518,7 @@ public class DialogFabricante extends javax.swing.JDialog {
 
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
+        
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());

@@ -414,7 +414,7 @@ public class DialogCidade extends javax.swing.JDialog {
             }
             this.carregaTable();
             this.iniciaComponentes();
-            iniciaComponentesInvisivel();
+            this.iniciaComponentesInvisivel();
             this.ButtonExcluir.setEnabled(true);
             this.buttonAdd.setEnabled(true);
         }catch (Exception ex){

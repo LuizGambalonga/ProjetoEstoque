@@ -65,7 +65,7 @@ public class DialogEstado extends javax.swing.JDialog {
     public DialogEstado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-       // this.carregaTable();
+       this.carregaTable();
         
     }
 
@@ -386,8 +386,10 @@ public class DialogEstado extends javax.swing.JDialog {
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");
             }else{
                 dao.update(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Alterações realizada com Sucesso");
             }
             this.carregaTable();
             this.iniciaComponentes();
