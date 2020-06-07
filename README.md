@@ -7,4 +7,4 @@ Este software busca atender algumas necessidades do dia-dia de uma transportador
 - Cadastros de Fornecedores.
 - Cadastro de Veiculos.
 - Cadastro de Fabricantes.
-- 
+- Menu Principal com Acesso rapido a todas telas.
