@@ -282,6 +282,47 @@ public class DialogVendedores extends javax.swing.JDialog {
 
         jLabel10.setText("Cpf");
 
+        texto_nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_nomeKeyTyped(evt);
+            }
+        });
+
+        texto_contato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_contatoKeyTyped(evt);
+            }
+        });
+
+        texto_telefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_telefoneKeyTyped(evt);
+            }
+        });
+
+        texto_cpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_cpfKeyTyped(evt);
+            }
+        });
+
+        texto_cep.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                texto_cepMouseClicked(evt);
+            }
+        });
+        texto_cep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_cepKeyTyped(evt);
+            }
+        });
+
+        texto_endereco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_enderecoKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelLayout = new javax.swing.GroupLayout(painel);
         painel.setLayout(painelLayout);
         painelLayout.setHorizontalGroup(
@@ -311,7 +352,7 @@ public class DialogVendedores extends javax.swing.JDialog {
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(texto_contato, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(103, 144, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelLayout.createSequentialGroup()
                         .addGroup(painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelLayout.createSequentialGroup()
@@ -346,7 +387,7 @@ public class DialogVendedores extends javax.swing.JDialog {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(ButtonExcluir)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelLayout.setVerticalGroup(
             painelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,6 +523,30 @@ public class DialogVendedores extends javax.swing.JDialog {
 
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
+        if(texto_nome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório inserir um nome","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_contato.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório inserir um nome para contato","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_cpf.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório informar o CPF!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_cpf.getText().length()<11 || texto_cpf.getText().length() >11){
+        JOptionPane.showMessageDialog(null,"Informe um CPF valido!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_endereco.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório informar o Endereço!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_cep.getText().length()<7 || texto_cep.getText().length() >7){
+        JOptionPane.showMessageDialog(null,"Insira um Cep Valido","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
@@ -504,6 +569,58 @@ public class DialogVendedores extends javax.swing.JDialog {
         this.carregaCidade();
         //this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
+
+    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomeKeyTyped
+
+    private void texto_contatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_contatoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_contatoKeyTyped
+
+    private void texto_enderecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_enderecoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_enderecoKeyTyped
+
+    private void texto_telefoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_telefoneKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_telefoneKeyTyped
+
+    private void texto_cpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_cpfKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_cpfKeyTyped
+
+    private void texto_cepMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_texto_cepMouseClicked
+        // TODO add your handling code here       
+    }//GEN-LAST:event_texto_cepMouseClicked
+
+    private void texto_cepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_cepKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_cepKeyTyped
 
     /**
      * @param args the command line arguments

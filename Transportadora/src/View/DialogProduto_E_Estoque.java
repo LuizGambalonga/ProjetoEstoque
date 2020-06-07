@@ -286,11 +286,23 @@ public class DialogProduto_E_Estoque extends javax.swing.JDialog {
 
         jLabel6.setText("Valor");
 
+        texto_valor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_valorKeyTyped(evt);
+            }
+        });
+
         jLabel7.setText("Unidade Medida");
 
         combo_unidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setText("Quantidade:");
+
+        texto_quantidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_quantidadeKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -548,6 +560,18 @@ public class DialogProduto_E_Estoque extends javax.swing.JDialog {
 
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
+        if(texto_nome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório inserir um nome","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_quantidade.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório inserir a Quantidade de Produt para o cadastro","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_valor.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório informar o Valor do Produto!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
@@ -591,6 +615,22 @@ public class DialogProduto_E_Estoque extends javax.swing.JDialog {
         // TODO add your handling code here:
         this.carregaTable(texto_pesquisa.getText());
     }//GEN-LAST:event_button_pesquisa_estoqueActionPerformed
+
+    private void texto_valorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_valorKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_valorKeyTyped
+
+    private void texto_quantidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_quantidadeKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_quantidadeKeyTyped
 
     /**
      * @param args the command line arguments

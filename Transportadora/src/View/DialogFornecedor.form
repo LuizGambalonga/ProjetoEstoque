@@ -400,6 +400,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_endereco">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_enderecoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
@@ -417,8 +420,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_cep">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_cepKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_cnpj">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_cnpjKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
@@ -431,6 +440,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_telefone">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_telefoneKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

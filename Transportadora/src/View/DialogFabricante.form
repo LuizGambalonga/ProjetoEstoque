@@ -487,8 +487,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_cep">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_cepKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_cnpj">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_cnpjKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
@@ -503,6 +509,7 @@
             <Component class="javax.swing.JTextField" name="texto_codigo">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="texto_codigoActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_codigoKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
@@ -511,6 +518,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_telefone">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_telefoneKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

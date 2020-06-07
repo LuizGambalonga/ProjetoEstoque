@@ -213,6 +213,12 @@ public class DialogCarga extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        texto_valor_frete.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_valor_freteKeyTyped(evt);
+            }
+        });
+
         jLabel11.setText("Valor Frete");
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -288,6 +294,12 @@ public class DialogCarga extends javax.swing.JDialog {
 
         jLabel2.setText("Quantidade Produto");
 
+        texto_quantidade_produto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_quantidade_produtoKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("UN Medida");
 
         combo_medida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -320,25 +332,23 @@ public class DialogCarga extends javax.swing.JDialog {
                                 .addGap(24, 24, 24)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
+                                        .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(combo_cliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(143, 143, 143))
+                                        .addComponent(combo_medida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(54, 54, 54)
+                                        .addComponent(jfild2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(combo_frabricante_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jfild3)
+                                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(jfild3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(combo_fornecedor_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(combo_medida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(54, 54, 54)
-                                                .addComponent(jfild2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(combo_frabricante_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                                .addComponent(combo_cliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(53, 53, 53))
+                                            .addComponent(combo_fornecedor_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 31, Short.MAX_VALUE)
@@ -551,6 +561,22 @@ public class DialogCarga extends javax.swing.JDialog {
         this.carregaPais();
         this.carregaCliente();
     }//GEN-LAST:event_formWindowOpened
+
+    private void texto_valor_freteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_valor_freteKeyTyped
+        // TODO add your handling code here:
+        String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_valor_freteKeyTyped
+
+    private void texto_quantidade_produtoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_quantidade_produtoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_quantidade_produtoKeyTyped
 
     /**
      * @param args the command line arguments

@@ -438,6 +438,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_valor">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_valorKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
@@ -465,6 +468,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_quantidade">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_quantidadeKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

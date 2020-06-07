@@ -257,6 +257,12 @@ public class DialogCliente extends javax.swing.JDialog {
 
         jLabel2.setText("Nome");
 
+        texto_nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_nomeKeyTyped(evt);
+            }
+        });
+
         combo_pais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Pais");
@@ -271,13 +277,48 @@ public class DialogCliente extends javax.swing.JDialog {
 
         jLabel6.setText("Nome de Contato");
 
+        texto_nomecontato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_nomecontatoKeyTyped(evt);
+            }
+        });
+
         jLabel7.setText("Endereço");
+
+        texto_endereco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_enderecoKeyTyped(evt);
+            }
+        });
 
         jLabel8.setText("Cep");
 
         jLabel9.setText("Telefone");
 
         jLabel10.setText("Cpf");
+
+        texto_telefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_telefoneKeyTyped(evt);
+            }
+        });
+
+        texto_cpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_cpfKeyTyped(evt);
+            }
+        });
+
+        texto_cep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                texto_cepActionPerformed(evt);
+            }
+        });
+        texto_cep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_cepKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -488,7 +529,7 @@ public class DialogCliente extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null,"É obrigatório informar o Endereço!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        if(texto_cep.getText().length()<7 || texto_cep.getText().length() >7){
+        if(texto_cep.getText().length()<8 || texto_cep.getText().length() >8){
         JOptionPane.showMessageDialog(null,"Insira um Cep Valido","Mensagem", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -515,6 +556,58 @@ public class DialogCliente extends javax.swing.JDialog {
         this.carregaCidade();
         this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
+
+    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomeKeyTyped
+
+    private void texto_nomecontatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomecontatoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomecontatoKeyTyped
+
+    private void texto_enderecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_enderecoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_enderecoKeyTyped
+
+    private void texto_telefoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_telefoneKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_telefoneKeyTyped
+
+    private void texto_cpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_cpfKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_cpfKeyTyped
+
+    private void texto_cepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_cepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_texto_cepActionPerformed
+
+    private void texto_cepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_cepKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_cepKeyTyped
 
     /**
      * @param args the command line arguments

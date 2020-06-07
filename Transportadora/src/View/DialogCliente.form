@@ -368,6 +368,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_nome">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_nomeKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="combo_pais">
               <Properties>
@@ -435,6 +438,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_nomecontato">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_nomecontatoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
@@ -442,6 +448,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_endereco">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_enderecoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
               <Properties>
@@ -459,10 +468,20 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_telefone">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_telefoneKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_cpf">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_cpfKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_cep">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="texto_cepActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_cepKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

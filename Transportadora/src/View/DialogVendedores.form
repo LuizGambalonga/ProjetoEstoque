@@ -483,16 +483,35 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_nome">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_nomeKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_contato">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_contatoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_telefone">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_telefoneKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_cpf">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_cpfKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_cep">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="texto_cepMouseClicked"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_cepKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_endereco">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_enderecoKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

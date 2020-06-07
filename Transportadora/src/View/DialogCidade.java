@@ -243,6 +243,12 @@ public class DialogCidade extends javax.swing.JDialog {
             }
         });
 
+        texto_nome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_nomeKeyTyped(evt);
+            }
+        });
+
         btn_cancelar.setText("Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,6 +488,14 @@ public class DialogCidade extends javax.swing.JDialog {
                 dao.get(Cidade.class, codigo));
         }
     }//GEN-LAST:event_tableCidadeMouseClicked
+
+    private void texto_nomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_nomeKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_nomeKeyTyped
 
     /**
      * @param args the command line arguments

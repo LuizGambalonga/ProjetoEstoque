@@ -254,17 +254,41 @@ public class DialogFornecedor extends javax.swing.JDialog {
 
         jLabel7.setText("Endereço");
 
+        texto_endereco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_enderecoKeyTyped(evt);
+            }
+        });
+
         jLabel8.setText("Cep");
 
         jLabel9.setText("Telefone");
 
         jLabel10.setText("Cnpj");
 
+        texto_cep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_cepKeyTyped(evt);
+            }
+        });
+
+        texto_cnpj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_cnpjKeyTyped(evt);
+            }
+        });
+
         jLabel11.setText("Razao Social");
 
         texto_razao_social.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 texto_razao_socialKeyTyped(evt);
+            }
+        });
+
+        texto_telefone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_telefoneKeyTyped(evt);
             }
         });
 
@@ -495,6 +519,30 @@ public class DialogFornecedor extends javax.swing.JDialog {
 
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
+        if(texto_nome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório inserir um nome","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_nomecontato.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório inserir um nome para contato","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_cnpj.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório informar o CNPJ!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_cnpj.getText().length()<11 || texto_cnpj.getText().length() >11){
+        JOptionPane.showMessageDialog(null,"Informe um CNPJ valido!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_endereco.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório informar o Endereço!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if(texto_cep.getText().length()<7 || texto_cep.getText().length() >7){
+        JOptionPane.showMessageDialog(null,"Insira um Cep Valido","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
@@ -546,6 +594,38 @@ public class DialogFornecedor extends javax.swing.JDialog {
         evt.consume();
         }
     }//GEN-LAST:event_texto_razao_socialKeyTyped
+
+    private void texto_enderecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_enderecoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_enderecoKeyTyped
+
+    private void texto_cnpjKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_cnpjKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_cnpjKeyTyped
+
+    private void texto_telefoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_telefoneKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_telefoneKeyTyped
+
+    private void texto_cepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_cepKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_cepKeyTyped
 
     /**
      * @param args the command line arguments

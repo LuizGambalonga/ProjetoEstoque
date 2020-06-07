@@ -303,6 +303,9 @@
               <Font name="Arial" size="12" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_ano_fabricacaoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="texto_valor_veiculo">
           <Properties>
@@ -310,6 +313,9 @@
               <Font name="Arial" size="12" style="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_valor_veiculoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="combo_cor">
           <Properties>

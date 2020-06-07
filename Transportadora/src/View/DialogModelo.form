@@ -274,6 +274,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="texto_descricao">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="texto_descricaoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>

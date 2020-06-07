@@ -106,10 +106,10 @@ public class DialogModelo extends javax.swing.JDialog {
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setToolTipText("A");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         TableModelo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,7 +140,7 @@ public class DialogModelo extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
         );
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/btn-novo.png"))); // NOI18N
         buttonAdd.setText("Novo");
@@ -171,6 +171,12 @@ public class DialogModelo extends javax.swing.JDialog {
         jLabel1.setText("ID:");
 
         jLabel2.setText("Descrição");
+
+        texto_descricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_descricaoKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Código");
 
@@ -258,7 +264,7 @@ public class DialogModelo extends javax.swing.JDialog {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lb_pesquisa.setText("Pesquise uma Descrição");
 
@@ -364,6 +370,11 @@ public class DialogModelo extends javax.swing.JDialog {
 
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
+        
+        if(texto_codigo.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"É obrigatório inserir Código para o cadastro","Mensagem", JOptionPane.INFORMATION_MESSAGE);
+            return;
+      }
         try{
             if(texto_id.getText().isEmpty()){
                 dao.add(this.populateObject());
@@ -389,6 +400,14 @@ public class DialogModelo extends javax.swing.JDialog {
         this.carregaFabricante();
         this.carregaTable();
     }//GEN-LAST:event_formWindowOpened
+
+    private void texto_descricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_descricaoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="0987654321";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_descricaoKeyTyped
 
     /**
      * @param args the command line arguments

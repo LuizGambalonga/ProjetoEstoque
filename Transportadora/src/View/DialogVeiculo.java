@@ -241,8 +241,18 @@ public class DialogVeiculo extends javax.swing.JDialog {
         texto_renavam.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         texto_ano_fabricacao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        texto_ano_fabricacao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_ano_fabricacaoKeyTyped(evt);
+            }
+        });
 
         texto_valor_veiculo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        texto_valor_veiculo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_valor_veiculoKeyTyped(evt);
+            }
+        });
 
         combo_cor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -641,6 +651,22 @@ public class DialogVeiculo extends javax.swing.JDialog {
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void texto_valor_veiculoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_valor_veiculoKeyTyped
+        // TODO add your handling code here
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_valor_veiculoKeyTyped
+
+    private void texto_ano_fabricacaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_ano_fabricacaoKeyTyped
+        // TODO add your handling code here:
+         String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
+        if(caracteres.contains(evt.getKeyChar()+"")){
+        evt.consume();
+        }
+    }//GEN-LAST:event_texto_ano_fabricacaoKeyTyped
 
     /**
      * @param args the command line arguments
