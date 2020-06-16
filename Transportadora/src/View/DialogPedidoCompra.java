@@ -5,11 +5,97 @@
  */
 package View;
 
+import Controller.CidadeDAO;
+import Controller.EstadoDAO;
+import Controller.FabricanteDAO;
+import Controller.FornecedorDAO;
+import Controller.ProdutoDAO;
+import Controller.PaisDAO;
+import Controller.PedidoCompraDAO;
+import Controller.VeiculoDAO;
+import Enums.Cor;
+import Model.Fabricante;
+import Model.Fornecedor;
+import Model.Produto;
+import Model.PedidoCompra;
+import Model.MyTableModel;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Luiz Henrique
  */
 public class DialogPedidoCompra extends javax.swing.JDialog {
+    
+    private PedidoCompraDAO dao = new PedidoCompraDAO();
+    
+      private void carregaTablePedido(){
+        TablePedido.setModel(
+        new MyTableModel (PedidoCompra.class,
+       dao.getAll(),TablePedido));
+    }
+    private void carregaTablePedido(String filtro){ TablePedido.setModel(
+        new MyTableModel (PedidoCompra.class,
+        dao.getAll(filtro),TablePedido));
+        
+    }
+    private void carregaProduto(){
+        DefaultComboBoxModel cbm = 
+        new DefaultComboBoxModel(new Vector(
+        new ProdutoDAO().getAll()
+        ));
+        combo_produto.setModel(cbm);
+    }
+     
+     private void carregaFabricante(){
+        DefaultComboBoxModel cbm = 
+        new DefaultComboBoxModel(new Vector(
+        new FabricanteDAO().getAll()
+        ));
+        combo_fabricante.setModel(cbm);
+    }
+   
+     private void carregaFornecedor(){
+        DefaultComboBoxModel cbm = 
+        new DefaultComboBoxModel(new Vector(
+        new FornecedorDAO().getAll()
+        ));
+        combo_fornecedor.setModel(cbm);
+    }
+     
+     private void iniciaComponentes(){
+       texto_id.setText("");
+       texto_nome_comprador.setText("");
+       texto_nome_solicitante.setText("");
+       texto_quantidade.setText("");
+       combo_fabricante.setSelectedIndex(0);
+       combo_fornecedor.setSelectedIndex(0);
+       combo_produto.setSelectedIndex(0);
+   }
+   private PedidoCompra populateObject(){                              
+        return new PedidoCompra(
+        texto_id.getText().isEmpty()?1:Integer.parseInt(texto_id.getText()),
+        texto_nome_comprador.getText(),
+        Integer.parseInt(texto_quantidade.getText()+""),
+        texto_nome_solicitante.getText(),
+        (Fornecedor)combo_fornecedor.getSelectedItem(),
+        (Fabricante)combo_fabricante.getSelectedItem(), 
+        (Produto)combo_produto.getSelectedItem());
+    }
+
+   private void populateComponentes(PedidoCompra pedidocompra){
+        texto_id.setText(pedidocompra.getId()+"");
+        texto_nome_comprador.setText(pedidocompra.getNome());
+        texto_quantidade.setText(pedidocompra.getQuantidade()+"");
+        texto_nome_solicitante.setText(pedidocompra.getSolicitante()+"");
+        combo_fabricante.setSelectedItem(pedidocompra.getFabricante());
+        combo_fornecedor.setSelectedItem(pedidocompra.getFornecedor());
+        combo_produto.setSelectedItem(pedidocompra.getFornecedor());
+        
+        
+    }
 
     /**
      * Creates new form DialogPedidoCompra
@@ -17,6 +103,7 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
     public DialogPedidoCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.carregaTablePedido();
     }
 
     /**
@@ -32,10 +119,8 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         texto_nome_solicitante = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        texto_comprador = new javax.swing.JTextField();
+        texto_nome_comprador = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         combo_fornecedor = new javax.swing.JComboBox<>();
@@ -43,6 +128,11 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         texto_quantidade = new javax.swing.JTextField();
         combo_produto = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        texto_id = new javax.swing.JTextField();
+        buttonAdd = new javax.swing.JButton();
+        buttonSalva = new javax.swing.JButton();
+        ButtonExcluir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablePedido = new javax.swing.JTable();
@@ -52,6 +142,11 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pedido de Compras");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -60,10 +155,6 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
         jLabel2.setText("Nome do Solicitante:");
 
         jLabel3.setText("Produto:");
-
-        jButton1.setText("Adicionar Pedido");
-
-        jButton2.setText("Excluir Pedido");
 
         jLabel5.setText("Fornecedor do Produto:");
 
@@ -77,6 +168,32 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
 
         combo_produto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel8.setText("ID:");
+
+        buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/btn-novo.png"))); // NOI18N
+        buttonAdd.setText("Novo");
+        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddActionPerformed(evt);
+            }
+        });
+
+        buttonSalva.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/btn-salvar.png"))); // NOI18N
+        buttonSalva.setText("Salvar");
+        buttonSalva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalvaActionPerformed(evt);
+            }
+        });
+
+        ButtonExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icone/btn-excluir.png"))); // NOI18N
+        ButtonExcluir.setText("Excluir");
+        ButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -87,33 +204,37 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel3))))
+                            .addComponent(jLabel2))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(texto_nome_solicitante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(texto_nome_comprador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(texto_nome_solicitante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(texto_comprador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(combo_fabricante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combo_fornecedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(combo_produto, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(texto_quantidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))))
+                            .addComponent(combo_fabricante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(combo_fornecedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(buttonSalva)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ButtonExcluir))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(combo_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(texto_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(texto_id, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(243, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,7 +243,7 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(texto_comprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto_nome_comprador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(combo_fornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -133,17 +254,23 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
                         .addComponent(combo_fabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(combo_produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(combo_produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(texto_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(texto_quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(texto_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 1, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(buttonAdd)
+                            .addComponent(buttonSalva)))
+                    .addComponent(ButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -245,6 +372,71 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
         
     }//GEN-LAST:event_TablePedidoMouseClicked
 
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
+        // TODO add your handling code here:
+        this.iniciaComponentes();
+    }//GEN-LAST:event_buttonAddActionPerformed
+
+    private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
+        // TODO add your handling code here:
+        if(texto_nome_comprador.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "É obrigatório inserir o Nome para o Comprador");
+            texto_nome_comprador.setText("");
+            return;
+        }
+        if(texto_nome_solicitante.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "É necessario informar o nome do solicitante da compra do pedido");
+            texto_nome_solicitante.setText("");
+            return;
+        }
+        if(texto_quantidade.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "É necessario informar a quantidade de Produtos para realizar a compra");
+            texto_nome_solicitante.setText("");
+        }
+        try{
+            if(texto_id.getText().isEmpty()){
+                dao.add(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Cadastro realizado com Sucesso");
+            }else{
+                dao.update(this.populateObject());
+                JOptionPane.showMessageDialog(null,"Alterações Realizadas Com Sucesso");
+            }
+            this.carregaTablePedido();
+            this.iniciaComponentes();
+        }catch (Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_buttonSalvaActionPerformed
+
+    private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
+        // TODO add your handling code here:
+        if(texto_id.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Para realizar uma Exclusão deve selecionar um Pedido");
+            return;
+        }
+        if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
+            return;
+        }
+        JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
+        try{
+            dao.remove(dao.get(PedidoCompra.class, Integer.parseInt(texto_id.getText())));
+            this.iniciaComponentes();
+            this.carregaTablePedido();
+        }catch (NumberFormatException ex)  {
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_ButtonExcluirActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        this.carregaFabricante();
+        this.carregaFornecedor();
+        this.carregaTablePedido();
+        this.carregaProduto();
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -288,13 +480,14 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonExcluir;
     private javax.swing.JTable TablePedido;
+    private javax.swing.JButton buttonAdd;
+    private javax.swing.JButton buttonSalva;
     private javax.swing.JButton buttonconsulta_pedido;
     private javax.swing.JComboBox<String> combo_fabricante;
     private javax.swing.JComboBox<String> combo_fornecedor;
     private javax.swing.JComboBox<String> combo_produto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -302,11 +495,13 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField texto_comprador;
     private javax.swing.JTextField texto_consulta_placa_veiculo;
+    private javax.swing.JTextField texto_id;
+    private javax.swing.JTextField texto_nome_comprador;
     private javax.swing.JTextField texto_nome_solicitante;
     private javax.swing.JTextField texto_quantidade;
     // End of variables declaration//GEN-END:variables
