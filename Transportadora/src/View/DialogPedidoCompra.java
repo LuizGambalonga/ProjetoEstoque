@@ -129,10 +129,10 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
         texto_quantidade = new javax.swing.JTextField();
         combo_produto = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        texto_id = new javax.swing.JTextField();
         buttonAdd = new javax.swing.JButton();
         buttonSalva = new javax.swing.JButton();
         ButtonExcluir = new javax.swing.JButton();
+        texto_id = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablePedido = new javax.swing.JTable();
@@ -194,6 +194,8 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
             }
         });
 
+        texto_id.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -234,8 +236,8 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(texto_id, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(243, Short.MAX_VALUE))
+                        .addComponent(texto_id, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,7 +268,7 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 1, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonAdd)
                             .addComponent(buttonSalva)))
@@ -310,7 +312,7 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 747, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -347,10 +349,8 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -372,10 +372,34 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
         
     }//GEN-LAST:event_TablePedidoMouseClicked
 
-    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        this.iniciaComponentes();
-    }//GEN-LAST:event_buttonAddActionPerformed
+        this.carregaFabricante();
+        this.carregaFornecedor();
+        this.carregaTablePedido();
+        this.carregaProduto();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
+        // TODO add your handling code here:
+        if(texto_id.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Para realizar uma Exclusão deve selecionar um Pedido");
+            return;
+        }
+        if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
+            return;
+        }
+        JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
+        try{
+            dao.remove(dao.get(PedidoCompra.class, Integer.parseInt(texto_id.getText())));
+            this.iniciaComponentes();
+            this.carregaTablePedido();
+        }catch (NumberFormatException ex)  {
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_ButtonExcluirActionPerformed
 
     private void buttonSalvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvaActionPerformed
         // TODO add your handling code here:
@@ -408,34 +432,10 @@ public class DialogPedidoCompra extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_buttonSalvaActionPerformed
 
-    private void ButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonExcluirActionPerformed
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         // TODO add your handling code here:
-        if(texto_id.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Para realizar uma Exclusão deve selecionar um Pedido");
-            return;
-        }
-        if(JOptionPane.showConfirmDialog(null, "CONFIRMA?")!=0){
-            return;
-        }
-        JOptionPane.showMessageDialog(null,"Exclusão realizada com Sucesso");
-        try{
-            dao.remove(dao.get(PedidoCompra.class, Integer.parseInt(texto_id.getText())));
-            this.iniciaComponentes();
-            this.carregaTablePedido();
-        }catch (NumberFormatException ex)  {
-
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }//GEN-LAST:event_ButtonExcluirActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        this.carregaFabricante();
-        this.carregaFornecedor();
-        this.carregaTablePedido();
-        this.carregaProduto();
-    }//GEN-LAST:event_formWindowOpened
+        this.iniciaComponentes();
+    }//GEN-LAST:event_buttonAddActionPerformed
 
     /**
      * @param args the command line arguments

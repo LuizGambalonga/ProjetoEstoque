@@ -61,7 +61,7 @@ public class Produto implements java.io.Serializable{
   this.setFabricante(null);
   this.setFornecedor(null);
   }
-   public Produto(Integer id,String nome,Double valor,Integer Quantidade,Unidade unidade ,Modelo modelo,Fabricante fabricante,Fornecedor fornecedor){
+   public Produto(Integer id,String nome,Double valor,Integer quantidade,Unidade unidade ,Modelo modelo,Fabricante fabricante,Fornecedor fornecedor){
   this.setId(id);
   this.setNome(nome);
   this.setValor(valor);
@@ -91,10 +91,12 @@ public class Produto implements java.io.Serializable{
     public Double getValor() {
         return this.valor;
     }
+     
 
     public Unidade getUnidade() {
         return this.unidade;
     }
+    
 
     public void setUnidade(Unidade unidade) {
         this.unidade = unidade == null? Unidade.UN:unidade;
@@ -107,6 +109,7 @@ public class Produto implements java.io.Serializable{
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
+    
     
 
     public void setValor(Double valor) {

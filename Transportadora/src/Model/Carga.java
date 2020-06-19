@@ -72,9 +72,9 @@ private Estado estado;
 @JoinColumn(name ="ID_PAIS",referencedColumnName = "ID")
 private Pais pais;
 
-@Column(name = "Veiculo",length = 10,nullable = false)
-@SwingColumn(description = "Veiculo",colorOfBackgound = "")
-private String veiculo;
+@Column(name = "Motorista",length = 10,nullable = false)
+@SwingColumn(description = "Motorista",colorOfBackgound = "")
+private String motorista;
 //FIM
     public Carga() {
      this.setId(0);
@@ -85,7 +85,7 @@ private String veiculo;
      this.setPais(null);
     }
 
-    public Carga(Integer id,Double frete,Integer quantidadeproduto,Produto produto,Unidade unidade,Cliente cliente,Fabricante fabricante,Fornecedor fornecedor,Cidade cidade ,Estado estado,Pais pais,String veiculo) {
+    public Carga(Integer id,Double frete,Integer quantidadeproduto,Produto produto,Unidade unidade,Cliente cliente,Fabricante fabricante,Fornecedor fornecedor,Cidade cidade ,Estado estado,Pais pais,String motorista) {
       this.setId(id);
       this.setFrete(frete);
       this.setQuantidadeproduto(quantidadeproduto);
@@ -97,7 +97,7 @@ private String veiculo;
       this.setCidade(cidade);
       this.setEstado(estado);
       this.setPais(pais);
-      this.setVeiculo(veiculo);
+      this.setMotorista(motorista);
     }
 
     public Integer getId() {
@@ -186,18 +186,18 @@ private String veiculo;
         this.cidade = cidade == null ? new Cidade():cidade;
     }
 
-    public String getVeiculo() {
-        return veiculo;
+    public String getMotorista() {
+        return motorista;
     }
 
-    public void setVeiculo(String veiculo) {
-        this.veiculo = veiculo;
+    public void setMotorista(String motorista) {
+        this.motorista = motorista;
     }
 
     
 @Override
     public String toString() {
-        return getVeiculo();
+        return getMotorista();
     }
     
     
