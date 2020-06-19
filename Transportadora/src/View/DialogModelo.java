@@ -172,6 +172,11 @@ public class DialogModelo extends javax.swing.JDialog {
 
         jLabel2.setText("Descrição");
 
+        texto_descricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                texto_descricaoActionPerformed(evt);
+            }
+        });
         texto_descricao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 texto_descricaoKeyTyped(evt);
@@ -179,6 +184,17 @@ public class DialogModelo extends javax.swing.JDialog {
         });
 
         jLabel3.setText("Código");
+
+        texto_codigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                texto_codigoActionPerformed(evt);
+            }
+        });
+        texto_codigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                texto_codigoKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Fabricante");
 
@@ -403,11 +419,24 @@ public class DialogModelo extends javax.swing.JDialog {
 
     private void texto_descricaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_descricaoKeyTyped
         // TODO add your handling code here:
-        String caracteres="0987654321";
+        
+    }//GEN-LAST:event_texto_descricaoKeyTyped
+
+    private void texto_descricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_descricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_texto_descricaoActionPerformed
+
+    private void texto_codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_codigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_texto_codigoActionPerformed
+
+    private void texto_codigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texto_codigoKeyTyped
+        // TODO add your handling code here:
+        String caracteres="zaqwsxcderfvbgtyhnmjuikolpçAZQWSXEDCRFVTGBYHNUJMIKLOPÇ";
         if(caracteres.contains(evt.getKeyChar()+"")){
         evt.consume();
         }
-    }//GEN-LAST:event_texto_descricaoKeyTyped
+    }//GEN-LAST:event_texto_codigoKeyTyped
 
     /**
      * @param args the command line arguments

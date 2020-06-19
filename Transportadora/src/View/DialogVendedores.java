@@ -543,7 +543,7 @@ public class DialogVendedores extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null,"É obrigatório informar o Endereço!","Mensagem", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        if(texto_cep.getText().length()<7 || texto_cep.getText().length() >7){
+        if(texto_cep.getText().length()<8 || texto_cep.getText().length() >8){
         JOptionPane.showMessageDialog(null,"Insira um Cep Valido","Mensagem", JOptionPane.INFORMATION_MESSAGE);
             return;
         }

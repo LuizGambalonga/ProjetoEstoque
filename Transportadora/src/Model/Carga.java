@@ -1,7 +1,5 @@
 
 package Model;
-
-import Enums.Cor;
 import Enums.Unidade;
 import java.util.Objects;
 import javax.persistence.Column;
