@@ -47,7 +47,7 @@ import javax.persistence.Table;
     @SwingColumn(description = "Valor",colorOfBackgound = "")
     private Double valor_veiculo;
     //
-    @Column(name = "COR",length = 2,nullable = false)
+    @Column(name = "COR",length = 14,nullable = false)
     @Enumerated(EnumType.STRING)
     private Cor cor;
     // buscou a foreign produto

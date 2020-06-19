@@ -33,7 +33,7 @@ public class Cliente implements java.io.Serializable{
     @Column(name = "ENDERECO",length = 150,nullable = false)
     private String endereco;
     //
-    @Column(name = "CEP",length = 10,nullable = false)
+    @Column(name = "CEP",length = 8,nullable = false)
     private String cep;
     //
     @Column(name = "TELEFONE",length = 14)

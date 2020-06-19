@@ -4,22 +4,31 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/Enums/Tipo.java</file>
-            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Controller/CargaDAO.java</file>
-            <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogCidade.java</file>
-            <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogEstado.java</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogFabricante.java</file>
-            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Cliente.java</file>
-            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Fornecedor.java</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Carga.java</file>
-            <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogProduto_E_Estoque.java</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogVendedores.java</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/Banco/Dados.java</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogFornecedor.java</file>
-            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Enums/StatusItem.java</file>
-            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Controller/ProdutoDAO.java</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogModelo.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Produto.java</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/Enums/Cor.java</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogPedidoCompra.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Estado.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Pais.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Cidade.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Veiculo.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Controller/CargaDAO.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogCidade.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogEstado.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Cliente.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Fornecedor.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Modelo.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Vendedores.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogProduto_E_Estoque.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/PedidoCompra.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Enums/StatusItem.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Controller/ProdutoDAO.java</file>
+            <file>file:/C:/Projeto%20Estoque/Transportadora/src/Model/Fabricante.java</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/META-INF/persistence.xml</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/Enums/Unidade.java</file>
             <file>file:/C:/Projeto%20Estoque/Transportadora/src/View/DialogCliente.java</file>

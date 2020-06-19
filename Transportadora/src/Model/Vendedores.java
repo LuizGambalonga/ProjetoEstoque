@@ -39,7 +39,7 @@ public class Vendedores implements java.io.Serializable{
     @Column(name = "ENDERECO",length = 100,nullable = false)
     private String endereco;
     //
-    @Column(name = "CEP",length = 9,nullable = false)
+    @Column(name = "CEP",length = 8,nullable = false)
     private String cep;
     //
     @ManyToOne(fetch = FetchType.LAZY)

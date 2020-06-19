@@ -35,7 +35,7 @@ private int quantidadeproduto;
 @SwingColumn(description = "Produto",colorOfBackgound = "")
 @JoinColumn(name = "ID_PRODUTO",referencedColumnName = "ID")
 private Produto produto;
-@Column(name = "UNIDADE",length = 2,nullable = false)
+@Column(name = "UNIDADE",length = 10,nullable = false)
   @Enumerated(EnumType.STRING)
   private Unidade unidade;
  //
@@ -70,7 +70,7 @@ private Estado estado;
 @JoinColumn(name ="ID_PAIS",referencedColumnName = "ID")
 private Pais pais;
 
-@Column(name = "Motorista",length = 10,nullable = false)
+@Column(name = "Motorista",length = 100,nullable = false)
 @SwingColumn(description = "Motorista",colorOfBackgound = "")
 private String motorista;
 //FIM
